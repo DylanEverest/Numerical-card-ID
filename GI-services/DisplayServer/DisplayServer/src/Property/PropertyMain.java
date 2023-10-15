@@ -1,7 +1,7 @@
 package Property;
 
 import Jersey.Post;
-import response.PropertyResponse;
+import Property.response.PropertyResponse;
 
 public class PropertyMain {
     public static void main(String[] args) throws Exception {

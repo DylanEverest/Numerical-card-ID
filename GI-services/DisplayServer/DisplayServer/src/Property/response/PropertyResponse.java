@@ -1,4 +1,4 @@
-package response;
+package Property.response;
 
 import jakarta.json.bind.annotation.JsonbProperty;
 
