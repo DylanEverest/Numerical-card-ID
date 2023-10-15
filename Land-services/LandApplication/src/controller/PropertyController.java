@@ -1,8 +1,6 @@
 package controller;
 
-import java.sql.SQLException;
-
-import databaseconnectivity.SQLiteConnection;
+import databaseconnectivity.PgConnection;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -17,9 +15,9 @@ public class PropertyController
     @POST
     @Path("/getByNIC")
     @Consumes(MediaType.APPLICATION_JSON)
-    public PropertyResponse [] getPropertyByNIC(PropertyResponse propertyResponse) throws SQLException
+    public PropertyResponse [] getPropertyByNIC(PropertyResponse propertyResponse) throws Exception
     {
-        PropertyView[] views = PropertyView.selectFromPropertyView(new SQLiteConnection("/home/dylan/property"), propertyResponse.getCardId());
+        PropertyView[] views = PropertyView.selectFromPropertyView(new PgConnection("property","postgres","","jdbc:postgresql://localhost:5432/"), propertyResponse.getCardId());
 
         PropertyResponse[] babas = new PropertyResponse[views.length];
 
