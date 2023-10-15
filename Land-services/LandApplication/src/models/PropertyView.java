@@ -9,30 +9,33 @@ import java.util.List;
 
 import databaseconnectivity.SQLiteConnection;
 
-public class PropertyView 
-{
+import java.sql.Date; // Importez la classe Date pour utiliser les types DATE.
+
+public class PropertyView {
     private int propertyId;
     private String address;
     private int propertyPersonId;
     private String cardId;
-    private String purchaseDate;
+    private Date purchaseDate; // Utilisation du type Date pour purchaseDate.
+    private Date sold; // Utilisation du type Date pour sold.
 
-    public PropertyView(int propertyId, String address, int propertyPersonId, String cardId, String purchaseDate) {
+    public PropertyView(int propertyId, String address, int propertyPersonId, String cardId, Date purchaseDate, Date sold) {
         this.propertyId = propertyId;
         this.address = address;
         this.propertyPersonId = propertyPersonId;
         this.cardId = cardId;
         this.purchaseDate = purchaseDate;
+        this.sold = sold;
     }
 
     // Getters and setters for the fields
 
-    public static PropertyView [] selectFromPropertyView(SQLiteConnection sqliteConnection, String cardId) throws SQLException {
+    public static PropertyView[] selectFromPropertyView(SQLiteConnection sqliteConnection, String cardId) throws SQLException {
         List<PropertyView> results = new ArrayList<>();
         Connection connection = sqliteConnection.connectToDatabase();
-
-        String selectQuery = "SELECT * FROM property_view WHERE card_id = ?";
-
+    
+        String selectQuery = "SELECT * FROM property_view WHERE card_id = ? AND sold IS NOT NULL";
+    
         try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
             preparedStatement.setString(1, cardId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -41,21 +44,19 @@ public class PropertyView
                     String address = resultSet.getString("address");
                     int propertyPersonId = resultSet.getInt("property_person_id");
                     String resultCardId = resultSet.getString("card_id");
-                    String purchaseDate = resultSet.getString("purchase_date");
-
-                    PropertyView propertyView = new PropertyView(propertyId, address, propertyPersonId, resultCardId, purchaseDate);
+                    Date purchaseDate = resultSet.getDate("purchase_date");
+                    Date sold = resultSet.getDate("sold");
+    
+                    PropertyView propertyView = new PropertyView(propertyId, address, propertyPersonId, resultCardId, purchaseDate, sold);
                     results.add(propertyView);
                 }
                 return results.toArray(new PropertyView[results.size()]);
             }
-            
-        }
-        finally 
-        {
+        } finally {
             connection.close();
         }
-
     }
+    
 
     public int getPropertyId() {
         return propertyId;
@@ -89,11 +90,19 @@ public class PropertyView
         this.cardId = cardId;
     }
 
-    public String getPurchaseDate() {
+    public Date getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(String purchaseDate) {
+    public void setPurchaseDate(Date purchaseDate) {
         this.purchaseDate = purchaseDate;
+    }
+
+    public Date getSold() {
+        return sold;
+    }
+
+    public void setSold(Date sold) {
+        this.sold = sold;
     }
 }
