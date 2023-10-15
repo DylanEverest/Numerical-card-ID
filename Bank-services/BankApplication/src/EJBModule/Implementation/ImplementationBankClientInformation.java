@@ -15,12 +15,12 @@ public class ImplementationBankClientInformation implements BankClientInformatio
     @Override
     public BankClient getInformation(String NCI) throws Exception 
     {
-        BankAccountTransaction bk =  BankAccountTransaction.getTransactionsByCardId(
+        double amount =  BankAccountTransaction.getTotalAmountByCardId(
                                         new MysqlConnection("bank","root", "root", 
                                                                 "jdbc:mysql://localhost:3306/"),
                                                                        NCI, false) ;
 
-        BankClient client = new BankClient(bk.getCardId() ,bk.getAmount());
+        BankClient client = new BankClient(NCI , amount);
         return client;
         
     }

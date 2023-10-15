@@ -3,6 +3,7 @@ package models;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import databaseconnectivity.MysqlConnection;
@@ -64,7 +65,7 @@ public class BankAccountTransaction {
         }
     }
 
-    public static double getTotalAmountByCardId(MysqlConnection mysqlConnection, String cardId, boolean closeConnection) throws SQLException {
+    public static double getTotalAmountByCardId(MysqlConnection mysqlConnection, String cardId, boolean closeConnection) throws Exception {
         Connection connection = mysqlConnection.connectToDatabase();
         String selectQuery = "SELECT SUM(amount) AS total_amount FROM bankaccounttransaction WHERE card_id = ?";
         double totalAmount = 0.0;
