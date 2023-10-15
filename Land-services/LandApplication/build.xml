@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="ProjetJersey" default="build" basedir=".">
+<project name="Property" default="build" basedir=".">
     <!-- Propriétés -->
     <property name="src.dir" value="src"/>
     <property name="web.dir" value="WebContent"/>
@@ -7,7 +7,7 @@
     <property name="lib.dir" value="lib"/>
     <property name="glassfish.dir" value="/opt/glassfish7/glassfish/modules"/>
     <property name="war.dist" value="dist"/>
-    <property name="war.name" value="Projet"/>
+    <property name="war.name" value="Property"/>
 
     <!-- ASADMIN -->
     <property name="glassfish.asadmin" location="/opt/glassfish7/bin/asadmin" />
