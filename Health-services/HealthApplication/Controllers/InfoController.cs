@@ -29,7 +29,7 @@ namespace HealthApplication.Controllers
                 }
                 else
                 {
-                    return NotFound();
+                    return Ok("TSY MISY");
                 }
             }
             catch (Exception ex)

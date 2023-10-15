@@ -6,7 +6,7 @@ using HealthApplication.Repository;
 
 namespace HealthApplication.Controllers
 {
-    [Route("api/health")]
+    [Route("[controller]")]
     [ApiController]
     public class HealthController : ControllerBase
     {
@@ -37,14 +37,8 @@ namespace HealthApplication.Controllers
             try
             {
                 HealthInf health = _repository.GetHealthById(healthId);
-                if (health != null)
-                {
-                    return Ok(health);
-                }
-                else
-                {
-                    return NotFound("Santé introuvable.");
-                }
+                    
+                return Ok(health);
             }
             catch (Exception ex)
             {
@@ -72,10 +66,8 @@ namespace HealthApplication.Controllers
             try
             {
                 HealthInf existingHealth = _repository.GetHealthById(healthId);
-                if (existingHealth == null)
-                {
                     return NotFound("Santé introuvable.");
-                }
+                
 
                 existingHealth.CardId = updatedHealth.CardId;
                 existingHealth.Diseases = updatedHealth.Diseases;
