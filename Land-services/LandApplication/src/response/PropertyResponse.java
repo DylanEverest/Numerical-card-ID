@@ -2,22 +2,26 @@ package response;
 
 import jakarta.json.bind.annotation.JsonbProperty;
 
+import java.sql.Date; // Importez la classe Date pour utiliser les types DATE.
+
 public class PropertyResponse {
     private int propertyId;
     private String address;
     private int propertyPersonId;
     private String cardId;
-    private String purchaseDate;
+    private Date purchaseDate; // Utilisation du type Date pour purchaseDate.
+    private Date sold; // Utilisation du type Date pour sold.
 
-    public PropertyResponse(@JsonbProperty("propertyId") int propertyId,@JsonbProperty("address") String address,
-                    @JsonbProperty("propertyPersonId") int propertyPersonId, @JsonbProperty("cardId") String cardId, 
-                    @JsonbProperty("purchaseDate") String purchaseDate) 
+    public PropertyResponse(@JsonbProperty("propertyId") int propertyId, @JsonbProperty("address") String address,
+                           @JsonbProperty("propertyPersonId") int propertyPersonId, @JsonbProperty("cardId") String cardId,
+                           @JsonbProperty("purchaseDate") Date purchaseDate, @JsonbProperty("sold") Date sold) 
     {
         this.propertyId = propertyId;
         this.address = address;
         this.propertyPersonId = propertyPersonId;
         this.cardId = cardId;
         this.purchaseDate = purchaseDate;
+        this.sold = sold;
     }
 
     public int getPropertyId() {
@@ -52,12 +56,19 @@ public class PropertyResponse {
         this.cardId = cardId;
     }
 
-    public String getPurchaseDate() {
+    public Date getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(String purchaseDate) {
+    public void setPurchaseDate(Date purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 
+    public Date getSold() {
+        return sold;
+    }
+
+    public void setSold(Date sold) {
+        this.sold = sold;
+    }
 }

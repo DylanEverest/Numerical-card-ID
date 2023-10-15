@@ -30,16 +30,20 @@ public class PropertyView {
 
     // Getters and setters for the fields
 
-    public static PropertyView[] selectFromPropertyView(SQLiteConnection sqliteConnection, String cardId) throws SQLException {
+    public static PropertyView[] selectFromPropertyView(SQLiteConnection sqliteConnection, String cardId) throws SQLException 
+    {
         List<PropertyView> results = new ArrayList<>();
         Connection connection = sqliteConnection.connectToDatabase();
     
         String selectQuery = "SELECT * FROM property_view WHERE card_id = ? AND sold IS NOT NULL";
     
-        try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) 
+        {
             preparedStatement.setString(1, cardId);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) 
+            {
+                while (resultSet.next()) 
+                {
                     int propertyId = resultSet.getInt("property_id");
                     String address = resultSet.getString("address");
                     int propertyPersonId = resultSet.getInt("property_person_id");
@@ -52,10 +56,13 @@ public class PropertyView {
                 }
                 return results.toArray(new PropertyView[results.size()]);
             }
-        } finally {
+        } 
+        finally 
+        {
             connection.close();
         }
     }
+    
     
 
     public int getPropertyId() {

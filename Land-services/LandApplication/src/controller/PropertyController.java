@@ -23,9 +23,11 @@ public class PropertyController
 
         PropertyResponse[] babas = new PropertyResponse[views.length];
 
-        for (int i = 0; i < babas.length; i++) {
-            babas[i] = new PropertyResponse(views[i].getPropertyId(), views[i].getAddress(), views[i].getPropertyPersonId(), null, null)
+        for (int i = 0; i < babas.length; i++) 
+        {
+            babas[i] = new PropertyResponse(views[i].getPropertyId(), views[i].getAddress(), views[i].getPropertyPersonId(), views[i].getCardId(), views[i].getPurchaseDate() ,null);
         }
+        return babas ;
     }
 
 }
