@@ -3,6 +3,7 @@ package Glassfish7;
 import java.util.HashSet;
 import java.util.Set;
 
+import controller.PropertyController;
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
 
@@ -15,6 +16,8 @@ public class ContainerService extends Application
         Set<Class<?>> s = new HashSet<Class<?>>();
         // s.add(ExempleResource.class);
         // s.add(Employee.class);
+        s.add(PropertyController.class);
+        
         return s;
     }
     
