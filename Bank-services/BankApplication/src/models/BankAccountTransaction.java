@@ -3,6 +3,7 @@ package models;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLSyntaxErrorException;
 import java.sql.Timestamp;
 
 import databaseconnectivity.MysqlConnection;
@@ -48,7 +49,7 @@ public class BankAccountTransaction {
     // Méthode pour insérer une transaction dans la base de données
     public boolean insertTransaction(MysqlConnection mysqlConnection, boolean closeConnection) throws Exception {
         Connection connection = mysqlConnection.connectToDatabase();
-        String insertQuery = "INSERT INTO bankaccounttransaction (card_id, amount, transaction_date) VALUES (?, ?, ?";
+        String insertQuery = "INSERT INTO bankaccounttransaction (card_id, amount, transaction_date) VALUES (?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) 
         {
@@ -69,8 +70,9 @@ public class BankAccountTransaction {
         }
     }
 
-    public static double getTotalAmountByCardId(MysqlConnection mysqlConnection, String cardId, boolean closeConnection) throws Exception {
+    public static double getTotalAmountByCardId(MysqlConnection mysqlConnection, String cardId, boolean closeConnection) throws Exception , SQLSyntaxErrorException {
         Connection connection = mysqlConnection.connectToDatabase();
+        System.out.println("POINSA");
         String selectQuery = "SELECT SUM(amount) AS total_amount FROM bankaccounttransaction WHERE card_id = ?";
         double totalAmount = 0.0;
     
@@ -85,6 +87,7 @@ public class BankAccountTransaction {
             if (closeConnection) {
                 connection.close();
             }
+            
         }
     
         return totalAmount;

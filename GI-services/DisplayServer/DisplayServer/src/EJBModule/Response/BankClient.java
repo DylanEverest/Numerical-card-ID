@@ -5,7 +5,6 @@ public class BankClient implements java.io.Serializable
     private String cardId;
     private double amount;
 
-    
     public BankClient() {
     }
 

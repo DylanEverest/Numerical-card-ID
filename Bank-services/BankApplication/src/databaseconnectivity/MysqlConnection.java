@@ -20,7 +20,7 @@ public class MysqlConnection {
     public Connection connectToDatabase() throws Exception 
     {
         Class.forName("com.mysql.jdbc.Driver");
-        Connection con = DriverManager.getConnection(getUrl() + getDatabase(), getUser(), getPassword());
+        Connection con = DriverManager.getConnection(getUrl() + getDatabase()+"?characterEncoding=UTF-8", getUser(), getPassword());
         return con;
     }
 
