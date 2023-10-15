@@ -8,7 +8,7 @@ import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
 
 
-@ApplicationPath("resources")
+@ApplicationPath("/resources")
 public class ContainerService extends Application 
 {
     public Set<Class<?>> getClasses() 

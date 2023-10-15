@@ -2,9 +2,10 @@ package response;
 
 import jakarta.json.bind.annotation.JsonbProperty;
 
+import java.io.Serializable;
 import java.sql.Date; // Importez la classe Date pour utiliser les types DATE.
 
-public class PropertyResponse {
+public class PropertyResponse implements Serializable{
     private int propertyId;
     private String address;
     private int propertyPersonId;
@@ -12,6 +13,8 @@ public class PropertyResponse {
     private Date purchaseDate; // Utilisation du type Date pour purchaseDate.
     private Date sold; // Utilisation du type Date pour sold.
 
+    public PropertyResponse() {
+    }
     public PropertyResponse(@JsonbProperty("propertyId") int propertyId, @JsonbProperty("address") String address,
                            @JsonbProperty("propertyPersonId") int propertyPersonId, @JsonbProperty("cardId") String cardId,
                            @JsonbProperty("purchaseDate") Date purchaseDate, @JsonbProperty("sold") Date sold) 

@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.MediaType;
 import models.PropertyView;
 import response.PropertyResponse;
 
-@Path("property")
+@Path("/property")
 public class PropertyController 
 {
 
