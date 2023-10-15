@@ -19,7 +19,7 @@ public class PropertyController
     @Consumes(MediaType.APPLICATION_JSON)
     public PropertyResponse [] getPropertyByNIC(PropertyResponse propertyResponse) throws SQLException
     {
-        PropertyView[] views = PropertyView.selectFromPropertyView(new SQLiteConnection(""), propertyResponse.getCardId());
+        PropertyView[] views = PropertyView.selectFromPropertyView(new SQLiteConnection("/home/dylan/property"), propertyResponse.getCardId());
 
         PropertyResponse[] babas = new PropertyResponse[views.length];
 
