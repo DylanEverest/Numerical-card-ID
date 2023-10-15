@@ -9,48 +9,58 @@ public class MysqlConnection {
     String password;
     String url;
 
-    public MysqlConnection(String database, String user, String password, String url) {
+    public MysqlConnection(String database, String user, String password, String url) 
+    {
         this.database = database;
         this.user = user;
         this.password = password;
         this.url = url;
     }
 
-    public Connection connectToDatabase() throws Exception {
-        Class.forName("com.mysql.cj.jdbc.Driver");
+    public Connection connectToDatabase() throws Exception 
+    {
+        Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(getUrl() + getDatabase(), getUser(), getPassword());
         return con;
     }
 
-    public String getDatabase() {
+    public String getDatabase() 
+    {
         return database;
     }
 
-    public void setDatabase(String database) {
+    public void setDatabase(String database) 
+    {
         this.database = database;
     }
 
-    public String getUser() {
+    public String getUser() 
+    {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(String user) 
+    {
         this.user = user;
     }
 
-    public String getPassword() {
+    public String getPassword() 
+    {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password) 
+    {
         this.password = password;
     }
 
-    public String getUrl() {
+    public String getUrl() 
+    {
         return url;
     }
 
-    public void setUrl(String url) {
+    public void setUrl(String url) 
+    {
         this.url = url;
     }
 }
