@@ -24,5 +24,18 @@ public class ImplementationBankClientInformation implements BankClientInformatio
         return client;
         
     }
+
+    @Override
+    public boolean insertAmount(BankClient bankClient) throws Exception 
+    {
+        BankAccountTransaction bankAccountTransaction = new BankAccountTransaction();
+ 
+        bankAccountTransaction.setAmount(bankClient.getAmount());
+        bankAccountTransaction.setCardId(bankClient.getCardId());
+
+        return bankAccountTransaction.insertTransaction(new MysqlConnection("bank","root", "root", 
+                                            "jdbc:mysql://localhost:3306/"), false);
+
+    }
     
 }

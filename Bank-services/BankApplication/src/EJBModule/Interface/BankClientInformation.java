@@ -9,4 +9,6 @@ public interface BankClientInformation
 
     public abstract BankClient getInformation(String NCI) throws Exception;
 
+    public abstract boolean insertAmount(BankClient bankClient) throws Exception;
+
 }

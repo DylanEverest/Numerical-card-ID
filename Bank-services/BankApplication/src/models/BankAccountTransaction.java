@@ -15,6 +15,8 @@ public class BankAccountTransaction {
     private double amount;
     private Timestamp transactionDate;
 
+    public BankAccountTransaction(){}
+
     public BankAccountTransaction(int transactionId,String cardId ,double amount,Timestamp transactionDate) 
     {
         setTransactionId(transactionId);
@@ -44,7 +46,7 @@ public class BankAccountTransaction {
     }
 
     // Méthode pour insérer une transaction dans la base de données
-    public void insertTransaction(MysqlConnection mysqlConnection, boolean closeConnection) throws Exception {
+    public boolean insertTransaction(MysqlConnection mysqlConnection, boolean closeConnection) throws Exception {
         Connection connection = mysqlConnection.connectToDatabase();
         String insertQuery = "INSERT INTO bankaccounttransaction (card_id, amount, transaction_date) VALUES (?, ?, ?";
 
@@ -54,12 +56,15 @@ public class BankAccountTransaction {
             preparedStatement.setDouble(2, amount);
             preparedStatement.setTimestamp(3, transactionDate);
             preparedStatement.executeUpdate();
+
+            return true ;
         } 
         finally 
         {
             if (closeConnection) 
             {
                 connection.close();
+                return false ;
             }
         }
     }
