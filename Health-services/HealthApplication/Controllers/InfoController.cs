@@ -37,6 +37,5 @@ namespace HealthApplication.Controllers
             }
         }
 
-        // Autres actions CRUD ici
     }
 }
