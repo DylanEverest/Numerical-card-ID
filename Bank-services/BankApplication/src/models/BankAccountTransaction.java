@@ -64,37 +64,27 @@ public class BankAccountTransaction {
         }
     }
 
-    // Méthode pour récupérer toutes les transactions pour une carte spécifique
-    public static BankAccountTransaction getTransactionsByCardId(MysqlConnection mysqlConnection, String cardId, boolean closeConnection) throws Exception 
-    {
+    public static double getTotalAmountByCardId(MysqlConnection mysqlConnection, String cardId, boolean closeConnection) throws SQLException {
         Connection connection = mysqlConnection.connectToDatabase();
-        String selectQuery = "SELECT * FROM bankaccounttransaction WHERE card_id = ?";
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) 
-        {
+        String selectQuery = "SELECT SUM(amount) AS total_amount FROM bankaccounttransaction WHERE card_id = ?";
+        double totalAmount = 0.0;
+    
+        try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
             preparedStatement.setString(1, cardId);
             ResultSet resultSet = preparedStatement.executeQuery();
-
-            resultSet.next();
-          
-            int transactionId = resultSet.getInt("transaction_id");
-            double amount = resultSet.getDouble("amount");
-            Timestamp transactionDate = resultSet.getTimestamp("transaction_date");
-          
-            BankAccountTransaction transaction = new BankAccountTransaction(transactionId ,cardId ,amount,transactionDate);
-
-            return transaction;
-            
-        } 
-        finally 
-        {
-            if (closeConnection) 
-            {
+    
+            if (resultSet.next()) {
+                totalAmount = resultSet.getDouble("total_amount");
+            }
+        } finally {
+            if (closeConnection) {
                 connection.close();
             }
         }
-
+    
+        return totalAmount;
     }
+    
 
     public int getTransactionId() {
         return transactionId;
