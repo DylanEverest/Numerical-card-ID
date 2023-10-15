@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ProjetJersey" default="build" basedir=".">
+    <!-- Propriétés -->
+    <property name="src.dir" value="src"/>
+    <property name="web.dir" value="WebContent"/>
+    <property name="build.dir" value="bin"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="glassfish.dir" value="/opt/glassfish7/glassfish/modules"/>
+    <property name="war.dist" value="dist"/>
+    <property name="war.name" value="Projet"/>
+
+    <!-- ASADMIN -->
+    <property name="glassfish.asadmin" location="/opt/glassfish7/bin/asadmin" />
+
+    <!-- Tâche de suppression du répertoire "bin" -->
+    <target name="clean">
+        <delete dir="${build.dir}" failonerror="false" />
+    </target>
+
+    <!-- Tâche de compilation -->
+    <target name="compile" depends="clean , init">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+            <classpath>
+                <fileset dir="${lib.dir}">
+                    <include name="*.jar"/>
+                </fileset>
+                <fileset dir="${glassfish.dir}">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- Tâche de création du WAR -->
+    <target name="war" depends="compile">
+        <war destfile="${war.dist}/${war.name}.war" needxmlfile="false">
+            <fileset dir="${web.dir}" />
+            <lib dir="${lib.dir}" />
+            <classes dir="${build.dir}" />
+        </war>
+    </target>
+
+    <!-- Tâche pour undeploy le fichier JAR -->
+    <target name="undeploy" depends="war">
+        <exec executable="${glassfish.asadmin}">
+            <arg value="undeploy"/>
+            <arg value="${war.name}"/>
+        </exec>
+        <echo message="Undeployed"/>
+    </target>
+
+    <!-- Tâche pour déployer le fichier JAR -->
+    <target name="build" depends="undeploy">
+        <exec executable="${glassfish.asadmin}">
+            <arg value="deploy"/>
+            <arg value="${war.dist}/${war.name}.war"/>
+        </exec>
+        <echo message="Deployed !"/>
+    </target>
+
+    <!-- Tâche d'initialisation -->
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${war.dist}"/>
+    </target>
+</project>
