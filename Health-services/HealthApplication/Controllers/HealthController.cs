@@ -14,11 +14,11 @@ namespace HealthApplication.Controllers
     [Route("api/health")]
     public class HealthController : ControllerBase
     {
-        private readonly HealthRepository _healthRepository;
+        private readonly IDbConnection _connection;
 
-        public HealthController(HealthRepository healthRepository)
+        public HealthController(IDbConnection connection)
         {
-            _healthRepository = healthRepository;
+            _connection = connection;
         }
 
         [HttpGet("{cardId}")]
@@ -26,7 +26,10 @@ namespace HealthApplication.Controllers
         {
             try
             {
-                HealthInf health = _healthRepository.GetHealthByCardId(cardId);
+                HealthInf health = _connection.QueryFirstOrDefault<HealthInf>(
+                    "SELECT * FROM health WHERE card_id = @CardId",
+                    new { CardId = cardId }
+                );
 
                 if (health != null)
                 {
@@ -43,6 +46,5 @@ namespace HealthApplication.Controllers
             }
         }
 
-        // Autres actions CRUD ici
     }
 }
