@@ -52,7 +52,7 @@ namespace HealthApplication.Controllers
             try
             {
                 _repository.CreateHealth(health);
-                return CreatedAtAction(nameof(GetHealthById), new { healthId = health.HealthId }, health);
+                return CreatedAtAction(nameof(GetHealthById), new { healthId = health.health_id }, health);
             }
             catch (Exception ex)
             {
@@ -69,10 +69,10 @@ namespace HealthApplication.Controllers
                     return NotFound("Santé introuvable.");
                 
 
-                existingHealth.CardId = updatedHealth.CardId;
-                existingHealth.Diseases = updatedHealth.Diseases;
-                existingHealth.DateBegin = updatedHealth.DateBegin;
-                existingHealth.DateEnd = updatedHealth.DateEnd;
+                existingHealth.card_id = updatedHealth.card_id;
+                existingHealth.deseases = updatedHealth.deseases;
+                existingHealth.date_begin = updatedHealth.date_begin;
+                existingHealth.date_end = updatedHealth.date_end;
 
                 _repository.UpdateHealth(existingHealth);
                 return NoContent();

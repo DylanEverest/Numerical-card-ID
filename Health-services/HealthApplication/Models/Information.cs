@@ -7,7 +7,7 @@ namespace HealthApplication.Models
 {
     public class Information
     {
-        public string CardId { get; set; }
+        public string card_id { get; set; }
         public string Name { get; set; }
         public string FirstName { get; set; }
         public DateTime? BirthDate { get; set; }

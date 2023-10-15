@@ -10,19 +10,19 @@ namespace HealthApplication.Models
     {
         [Key]
         [Column("health_id")] // Spécifie le nom de la colonne dans la table
-        public int HealthId { get; set; }
+        public int health_id { get; set; }
 
         [Column("card_id")]
-        public string CardId { get; set; }
+        public string card_id { get; set; }
 
         [Column("deseases")]
-        public string Diseases { get; set; }
+        public string deseases { get; set; }
 
         [Column("date_begin")]
         [Required] // Indique que la colonne ne peut pas être nulle
-        public DateTime DateBegin { get; set; }
+        public DateTime date_begin { get; set; }
 
         [Column("date_end")]
-        public DateTime? DateEnd { get; set; }
+        public DateTime? date_end { get; set; }
     }
 }
