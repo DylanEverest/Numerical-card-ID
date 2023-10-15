@@ -1,4 +1,4 @@
-package Health.Obj;
+package WebserviceModule.response;
 
 import jakarta.json.bind.annotation.JsonbProperty;
 import java.util.Date;

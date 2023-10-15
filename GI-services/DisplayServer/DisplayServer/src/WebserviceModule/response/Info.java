@@ -1,4 +1,4 @@
-package Health.Obj;
+package WebserviceModule.response;
 
 import java.io.Serializable;
 import java.util.Date;

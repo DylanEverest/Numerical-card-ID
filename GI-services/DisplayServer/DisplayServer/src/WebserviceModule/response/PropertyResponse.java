@@ -1,4 +1,4 @@
-package Property.response;
+package WebserviceModule.response;
 
 import jakarta.json.bind.annotation.JsonbProperty;
 

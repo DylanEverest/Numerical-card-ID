@@ -1,4 +1,4 @@
-package Jersey;
+package WebserviceModule.Jersey;
 
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;

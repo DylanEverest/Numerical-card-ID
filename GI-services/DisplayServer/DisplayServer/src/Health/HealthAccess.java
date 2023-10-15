@@ -1,8 +1,7 @@
 package Health;
 
-import Jersey.Get;
-import Health.Obj.HealthInfo;
-import Health.Obj.Info;
+import WebserviceModule.Jersey.Get;
+import WebserviceModule.response.HealthInfo;
 
 public class HealthAccess {
     public static void main(String[] args) throws Exception 

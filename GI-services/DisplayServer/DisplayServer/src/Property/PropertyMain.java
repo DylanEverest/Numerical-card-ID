@@ -1,5 +1,7 @@
 package Property;
 
+import WebserviceModule.Jersey.Post;
+import WebserviceModule.response.PropertyResponse;
 
 public class PropertyMain {
     public static void main(String[] args) throws Exception {
