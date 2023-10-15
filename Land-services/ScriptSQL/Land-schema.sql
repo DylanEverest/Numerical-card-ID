@@ -1,12 +1,12 @@
 -- Création de la table property
 CREATE TABLE property (
-    property_id INTEGER PRIMARY KEY,
+    property_id serial PRIMARY KEY,
     address VARCHAR(30)
 );
 
 -- Création de la table property_person
 CREATE TABLE property_person (
-    property_person_id INTEGER PRIMARY KEY,
+    property_person_id serial PRIMARY KEY,
     property_id INTEGER,
     card_id VARCHAR(50) NOT NULL,
     purchase_date DATE,
