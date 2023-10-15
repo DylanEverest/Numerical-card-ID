@@ -47,6 +47,7 @@ public class HealthAccess
                 "            <span class=\"bp-mini__h1\">\n" +
                 "                <a> Deseases name:"+ h[i].getDiseases()+ " </a></span>\n" +
                 "        </div>\n" +
+                "    </div>\n" +
                 "    </div>\n" 
                 ;
             }
@@ -90,7 +91,7 @@ public class HealthAccess
                "            <span class=\"bp-mini__h1\">\n" +
                "                <a>"+name + firstName +" </a></span>\n" +
                "        </div>\n" +
-               "    </div>\n" 
+               "    </div>\n"  
                ;
     }
     
@@ -100,6 +101,6 @@ public class HealthAccess
     {
         System.out.println(HealthAccess.getGeneralINFO("ID002"));        
 
-        System.out.println(HealthAccess.getHealthInfo("ID002"));
+        System.out.println(HealthAccess.getHTMLHealthInfo("ID002"));
     }
 }
