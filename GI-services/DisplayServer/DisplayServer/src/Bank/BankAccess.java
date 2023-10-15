@@ -8,7 +8,7 @@ public class BankAccess{
     
     
     
-    public BankClient getBankInfo(String NCI) throws Exception
+    public static BankClient getBankInfo(String NCI) throws Exception
     {
         Lookup<BankClientInformation> lookup = new Lookup<BankClientInformation>("localhost", "3700");
         BankClientInformation bk = lookup.getObject("Bank/ImplementationBankClientInformation", "EJBModule.Interface.BankClientInformation");
@@ -29,11 +29,8 @@ public class BankAccess{
     
     public static void main(String[] args) throws Exception 
     {
-        Lookup<BankClientInformation> lookup = new Lookup<BankClientInformation>("localhost", "3700");
+        System.out.println(BankAccess.getBankInfo("54651248"));
 
-        BankClientInformation bankClientInformation=  lookup.getObject("Bank/ImplementationBankClientInformation", "EJBModule.Interface.BankClientInformation");
-
-        System.out.println(bankClientInformation.insertAmount(new BankClient("54651248", 1561230))) ;
     }
 
 }

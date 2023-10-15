@@ -1212,11 +1212,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/dylan/Desktop/CloudProject/SERVICES/Health-services/HealthApplication/HealthApplication.csproj",
+      "projectUniqueName": "/home/dylan/Desktop/CloudProject/Services/Numerical-card-ID/Health-services/HealthApplication/HealthApplication.csproj",
       "projectName": "HealthApplication",
-      "projectPath": "/home/dylan/Desktop/CloudProject/SERVICES/Health-services/HealthApplication/HealthApplication.csproj",
+      "projectPath": "/home/dylan/Desktop/CloudProject/Services/Numerical-card-ID/Health-services/HealthApplication/HealthApplication.csproj",
       "packagesPath": "/home/dylan/.nuget/packages/",
-      "outputPath": "/home/dylan/Desktop/CloudProject/SERVICES/Health-services/HealthApplication/obj/",
+      "outputPath": "/home/dylan/Desktop/CloudProject/Services/Numerical-card-ID/Health-services/HealthApplication/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/dylan/.nuget/NuGet/NuGet.Config"
