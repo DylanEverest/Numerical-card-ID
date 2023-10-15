@@ -1,48 +1,58 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using System.Data;
-using System.Data.SqlClient; // Ou tout autre fournisseur de base de données pris en charge par Dapper
 using Dapper;
-using HealthApplication.Models;
+using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
-namespace HealthApplication.Controllers
+namespace HealthApplication.Repositories
 {
-    [ApiController]
-    [Route("api/health")]
-    public class HealthController : ControllerBase
+    public class HealthRepository
     {
-        private readonly HealthRepository _healthRepository;
+        private readonly IConfiguration _config;
+        private IDbConnection _connection;
 
-        public HealthController(HealthRepository healthRepository)
+        public HealthRepository(IConfiguration config)
         {
-            _healthRepository = healthRepository;
+            _config = config;
+            _connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
         }
 
-        [HttpGet("{cardId}")]
-        public IActionResult GetHealthByCardId(string cardId)
+        public IEnumerable<HealthInf> GetHealthByCardId(string cardId)
         {
-            try
-            {
-                HealthInf health = _healthRepository.GetHealthByCardId(cardId);
-
-                if (health != null)
-                {
-                    return Ok(health);
-                }
-                else
-                {
-                    return NotFound();
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            _connection.Open();
+            var query = "SELECT * FROM health WHERE card_id = @CardId";
+            return _connection.Query<HealthInf>(query, new { CardId = cardId });
         }
 
-        // Autres actions CRUD ici
+        public HealthInf GetHealthById(int healthId)
+        {
+            _connection.Open();
+            var query = "SELECT * FROM health WHERE health_id = @HealthId";
+            return _connection.QueryFirstOrDefault<HealthInf>(query, new { HealthId = healthId });
+        }
+
+        public void CreateHealth(HealthInf health)
+        {
+            _connection.Open();
+            var query = "INSERT INTO health (card_id, diseases, date_begin, date_end) " +
+                        "VALUES (@CardId, @Diseases, @DateBegin, @DateEnd)";
+            _connection.Execute(query, health);
+        }
+
+        public void UpdateHealth(HealthInf health)
+        {
+            _connection.Open();
+            var query = "UPDATE health " +
+                        "SET card_id = @CardId, diseases = @Diseases, date_begin = @DateBegin, date_end = @DateEnd " +
+                        "WHERE health_id = @HealthId";
+            _connection.Execute(query, health);
+        }
+
+        public void DeleteHealth(int healthId)
+        {
+            _connection.Open();
+            var query = "DELETE FROM health WHERE health_id = @HealthId";
+            _connection.Execute(query, new { HealthId = healthId });
+        }
     }
 }

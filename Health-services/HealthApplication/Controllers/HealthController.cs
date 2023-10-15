@@ -11,7 +11,7 @@ using HealthApplication.Models;
 namespace HealthApplication.Controllers
 {
     [ApiController]
-    [Route("api/health")]
+    [Route("[controller]")]
     public class HealthController : ControllerBase
     {
         private readonly IDbConnection _connection;

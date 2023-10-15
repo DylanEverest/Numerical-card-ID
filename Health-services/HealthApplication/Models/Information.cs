@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HealthApplication.Models
 {
-    public class Info
+    public class Information
     {
         public string CardId { get; set; }
         public string Name { get; set; }

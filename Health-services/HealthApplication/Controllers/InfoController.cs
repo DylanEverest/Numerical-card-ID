@@ -1,11 +1,11 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
-
+using HealthApplication.Repository ;
 namespace HealthApplication.Controllers
 {
     [ApiController]
-    [Route("api/info")]
+    [Route("[controller]")]
     public class InfoController : ControllerBase
     {
         private readonly InfoRepository _infoRepository;

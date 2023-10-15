@@ -1,25 +1,29 @@
-using System;
+using Dapper;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
 
-namespace HealthApplication.Repository
+namespace HealthApplication.Repositories
 {
     public class InfoRepository
     {
-        private readonly IDbConnection _connection;
+        private readonly IConfiguration _config;
+        private IDbConnection _connection;
 
-        public InfoRepository(IDbConnection connection)
+        public InfoRepository(IConfiguration config)
         {
-            _connection = connection;
+            _config = config;
+            _connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
         }
 
         public Info GetInfoByCardId(string cardId)
         {
-            return _connection.QueryFirstOrDefault<Info>(
-                "SELECT * FROM infos WHERE card_id = @CardId",
-                new { CardId = cardId }
-            );
+            _connection.Open();
+            var query = "SELECT * FROM infos WHERE card_id = @CardId";
+            return _connection.QueryFirstOrDefault<Info>(query, new { CardId = cardId });
         }
+
+        // Autres méthodes CRUD ici
     }
 }

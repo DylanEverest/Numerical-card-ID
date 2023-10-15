@@ -1,0 +1,7 @@
+/home/dylan/Desktop/SERVICES/Health-services/HealthApplication/obj/Debug/net7.0/HealthApplication.csproj.AssemblyReference.cache
+/home/dylan/Desktop/SERVICES/Health-services/HealthApplication/obj/Debug/net7.0/HealthApplication.GeneratedMSBuildEditorConfig.editorconfig
+/home/dylan/Desktop/SERVICES/Health-services/HealthApplication/obj/Debug/net7.0/HealthApplication.AssemblyInfoInputs.cache
+/home/dylan/Desktop/SERVICES/Health-services/HealthApplication/obj/Debug/net7.0/HealthApplication.AssemblyInfo.cs
+/home/dylan/Desktop/SERVICES/Health-services/HealthApplication/obj/Debug/net7.0/HealthApplication.csproj.CoreCompileInputs.cache
+/home/dylan/Desktop/SERVICES/Health-services/HealthApplication/obj/Debug/net7.0/HealthApplication.MvcApplicationPartsAssemblyInfo.cs
+/home/dylan/Desktop/SERVICES/Health-services/HealthApplication/obj/Debug/net7.0/HealthApplication.MvcApplicationPartsAssemblyInfo.cache
