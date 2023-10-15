@@ -21,7 +21,7 @@ namespace HealthApplication.Repository
         public IEnumerable<HealthInf> GetHealthByCardId(string cardId)
         {
             _connection.Open();
-            var query = "SELECT * FROM health WHERE card_id = @CardId";
+            var query = "SELECT * FROM health WHERE card_id = @CardId and date_end is not null" ;
             return _connection.Query<HealthInf>(query, new { CardId = cardId });
         }
 
