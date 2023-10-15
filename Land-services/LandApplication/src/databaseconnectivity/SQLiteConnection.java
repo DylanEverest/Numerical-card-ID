@@ -20,7 +20,7 @@ public class SQLiteConnection {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            String url = "jdbc:sqlite:" + database;
+            String url = "jdbc:sqlite:" + database+".db";
             connection = DriverManager.getConnection(url);
             return connection;
         } catch (ClassNotFoundException e) {
