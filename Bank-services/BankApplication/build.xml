@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="ServStore" default="build" basedir=".">
+<project name="Bank" default="build" basedir=".">
     
     <!-- Propriétés -->
     <property name="src.dir" location="src"/>
     <property name="build.dir" location="bin"/>
     <property name="jar.dir" location="dist"/>
     <!-- Name of the jar file -->
-    <property name="jar.file" value="ServStore.jar" />
+    <property name="jar.file" value="Bank.jar" />
 
-    <property name="jar.deployed" value="ServStore" />
+    <property name="jar.deployed" value="Bank" />
 
     <property name="lib.dir" value="lib" />
 
