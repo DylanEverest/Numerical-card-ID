@@ -95,4 +95,20 @@ public class BankAccountTransaction {
         }
 
     }
+
+    public int getTransactionId() {
+        return transactionId;
+    }
+
+    public String getCardId() {
+        return cardId;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public Timestamp getTransactionDate() {
+        return transactionDate;
+    }
 }
