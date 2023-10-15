@@ -1,7 +1,8 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
-using HealthApplication.Repository ;
+using HealthApplication.Repository;
+using HealthApplication.Models;
 namespace HealthApplication.Controllers
 {
     [ApiController]
@@ -20,7 +21,7 @@ namespace HealthApplication.Controllers
         {
             try
             {
-                Info info = _infoRepository.GetInfoByCardId(cardId);
+                Information info = _infoRepository.GetInfoByCardId(cardId);
 
                 if (info != null)
                 {

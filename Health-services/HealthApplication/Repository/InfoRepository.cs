@@ -3,8 +3,9 @@ using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-
-namespace HealthApplication.Repositories
+using HealthApplication.Models ;
+using Npgsql;
+namespace HealthApplication.Repository
 {
     public class InfoRepository
     {
@@ -14,14 +15,14 @@ namespace HealthApplication.Repositories
         public InfoRepository(IConfiguration config)
         {
             _config = config;
-            _connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+            _connection = new NpgsqlConnection(_config.GetConnectionString("DefaultConnection"));
         }
 
-        public Info GetInfoByCardId(string cardId)
+        public Information GetInfoByCardId(string cardId)
         {
             _connection.Open();
             var query = "SELECT * FROM infos WHERE card_id = @CardId";
-            return _connection.QueryFirstOrDefault<Info>(query, new { CardId = cardId });
+            return _connection.QueryFirstOrDefault<Information>(query, new { CardId = cardId });
         }
 
         // Autres méthodes CRUD ici

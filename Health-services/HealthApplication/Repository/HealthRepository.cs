@@ -3,8 +3,9 @@ using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-
-namespace HealthApplication.Repositories
+using HealthApplication.Models;
+using Npgsql;
+namespace HealthApplication.Repository
 {
     public class HealthRepository
     {
@@ -14,7 +15,7 @@ namespace HealthApplication.Repositories
         public HealthRepository(IConfiguration config)
         {
             _config = config;
-            _connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+            _connection = new NpgsqlConnection(_config.GetConnectionString("DefaultConnection"));
         }
 
         public IEnumerable<HealthInf> GetHealthByCardId(string cardId)
