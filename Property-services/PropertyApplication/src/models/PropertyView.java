@@ -3,12 +3,10 @@ package models;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import databaseconnectivity.PgConnection;
-import databaseconnectivity.SQLiteConnection;
 
 import java.sql.Date; // Importez la classe Date pour utiliser les types DATE.
 
@@ -36,7 +34,7 @@ public class PropertyView {
         List<PropertyView> results = new ArrayList<>();
         Connection connection = sqliteConnection.connectToDataBase();
     
-        String selectQuery = "SELECT * FROM property_view WHERE card_id = ? AND sold IS NOT NULL";
+        String selectQuery = "SELECT * FROM property_view WHERE card_id = ? AND sold IS NULL";
     
         try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) 
         {
@@ -51,7 +49,7 @@ public class PropertyView {
                     String resultCardId = resultSet.getString("card_id");
                     Date purchaseDate = resultSet.getDate("purchase_date");
                     Date sold = resultSet.getDate("sold");
-    
+                    
                     PropertyView propertyView = new PropertyView(propertyId, address, propertyPersonId, resultCardId, purchaseDate, sold);
                     results.add(propertyView);
                 }
