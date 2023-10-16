@@ -34,11 +34,13 @@ create table currency (
 create table currencyequivalence(
     pk_id serial primary key ,
     currency_id_ariary varchar(50) default('Ariary') REFERENCES currency(currency_id) ,
-    ammout_Ariary double precision ,
+    amount_Ariary double precision default(1) ,
     currency_id_Euro varchar(50) default('Euro') REFERENCES currency(currency_id) ,
-    amout_Euro double precision ,
+    amount_Euro double precision ,
     currency_id_Dollar varchar(50) default('Dollar') REFERENCES currency(currency_id) ,
-    amount_dollar double precision
+    amount_dollar double precision ,
+    dateBegin timestamp not null default(now()),
+    dateEnd timestamp
 );
 
 

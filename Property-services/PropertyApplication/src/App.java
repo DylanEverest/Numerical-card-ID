@@ -1,8 +1,6 @@
 
-import java.sql.SQLException;
 
 import databaseconnectivity.PgConnection;
-import databaseconnectivity.SQLiteConnection;
 import models.PropertyView;
 import response.PropertyResponse;
 
