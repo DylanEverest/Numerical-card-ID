@@ -11,12 +11,14 @@ public class CurrencyResponse implements Serializable
     double precisionDollar;
 
 
+    public CurrencyResponse(){}
     
     public CurrencyResponse(@JsonbProperty("precisionAriary")double precisionAriary,@JsonbProperty("precisionEuro") double precisionEuro,@JsonbProperty("precisionDollar") double precisionDollar) {
         this.precisionAriary = precisionAriary;
         this.precisionEuro = precisionEuro;
         this.precisionDollar = precisionDollar;
     }
+
     public double getPrecisionAriary() {
         return precisionAriary;
     }

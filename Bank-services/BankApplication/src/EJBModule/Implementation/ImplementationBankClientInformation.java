@@ -49,6 +49,7 @@ public class ImplementationBankClientInformation implements BankClientInformatio
 
         setAmountConvert(bankSender);
 
+        System.out.println("transferMoney");
         if(checkTransactionValidityAmount(bankSender, bankReceiver))
         {
             return doTransaction(bankSender, bankReceiver) ;
@@ -69,9 +70,8 @@ public class ImplementationBankClientInformation implements BankClientInformatio
             BankAccountTransaction bankAccountTransaction = new BankAccountTransaction();
             bankAccountTransaction.setAmount(bankSender.getAmount());
             bankAccountTransaction.setCardId(bankSender.getCardId());
-    
+            System.out.println("ETO");
             bankAccountTransaction.insertTransaction(connection, false);
-    
             bankAccountTransaction.setAmount(bankReceiver.getAmount());
             bankAccountTransaction.setCardId(bankReceiver.getCardId());
     

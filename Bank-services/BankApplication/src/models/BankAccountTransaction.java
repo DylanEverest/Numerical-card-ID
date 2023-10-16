@@ -71,7 +71,9 @@ public class BankAccountTransaction {
     }
 
     public boolean insertTransaction(Connection connection, boolean closeConnection) throws Exception {
-        String insertQuery = "INSERT INTO bankaccounttransaction (card_id, amount, transaction_date) VALUES (?, ?, ?)";
+        String insertQuery = "INSERT INTO bankaccounttransaction (card_id, amount) VALUES (?, ?, ?)";
+
+        System.out.println(cardId +" " + amount + " " + transactionDate);
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) 
         {
@@ -94,7 +96,6 @@ public class BankAccountTransaction {
 
     public static double getTotalAmountByCardId(MysqlConnection mysqlConnection, String cardId, boolean closeConnection) throws Exception , SQLSyntaxErrorException {
         Connection connection = mysqlConnection.connectToDatabase();
-        System.out.println("POINSA");
         String selectQuery = "SELECT SUM(amount) AS total_amount FROM bankaccounttransaction WHERE card_id = ?";
         double totalAmount = 0.0;
     

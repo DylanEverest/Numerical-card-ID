@@ -14,7 +14,7 @@ public class CurrencyTable
     {
         try
         {
-            String selectQuery = "SELECT amount_Ariary ,amount_Euro ,amount_dollar FROM currencyequivalence WHERE dateEnd  IS NOT NULL";   
+            String selectQuery = "SELECT amount_Ariary ,amount_Euro ,amount_dollar FROM currencyequivalence WHERE dateEnd  IS NULL";   
             Statement statement = connection.createStatement();
             ResultSet res= statement.executeQuery(selectQuery);
             CurrencyTable currencyTable = new CurrencyTable();
