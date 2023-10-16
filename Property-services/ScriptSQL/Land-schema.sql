@@ -24,3 +24,22 @@ SELECT
     pp.sold
 FROM property p
 JOIN property_person pp ON p.property_id = pp.property_id;
+
+
+create table currency (
+
+    currency_id varchar(50) primary key
+) ;
+
+create table currencyequivalence(
+    pk_id serial primary key ,
+    currency_id_ariary varchar(50) default('Ariary') REFERENCES currency(currency_id) ,
+    ammout_Ariary double precision ,
+    currency_id_Euro varchar(50) default('Euro') REFERENCES currency(currency_id) ,
+    amout_Euro double precision ,
+    currency_id_Dollar varchar(50) default('Dollar') REFERENCES currency(currency_id) ,
+    amount_dollar double precision
+);
+
+
+
