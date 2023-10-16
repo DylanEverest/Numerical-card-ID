@@ -3,6 +3,8 @@ package Bank;
 import EJBModule.Interface.BankClientInformation;
 import EJBModule.Response.BankClient;
 import EJBModule.glassfish7.Lookup;
+import Health.HealthAccess;
+import WebserviceModule.response.Info;
 
 public class BankAccess{
     
@@ -46,7 +48,24 @@ public class BankAccess{
     public static boolean transferMoney(String senderNIC ,String receiverNIC ,String currency , String amount) throws Exception 
     {
 
-        System.out.println("ALALA");
+        try 
+        {
+            Info inf = HealthAccess.getGeneralINFO(senderNIC);
+
+            
+        } 
+        catch (Exception e) 
+        {
+            throw new Exception("Unfound NIC"+senderNIC);
+        }
+        try{
+            Info inf2 = HealthAccess.getGeneralINFO(receiverNIC);
+
+        }
+        catch(Exception e2)
+        {
+            throw new Exception("Unfound NIC"+receiverNIC);
+        }
 
         Lookup<BankClientInformation> lookup = new Lookup<BankClientInformation>("localhost", "3700");   
 
