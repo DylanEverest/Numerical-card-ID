@@ -12,7 +12,8 @@ create table bankaccounttransaction (
 create table transfertransaction (
     transfertransaction_id serial ,
     card_id_sender varchar(50) not null,
-    card_id_receiver varchar(50) not null
+    card_id_receiver varchar(50) not null ,
+    dateTransaction TIMESTAMP default(now())
 );
 
 

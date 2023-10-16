@@ -43,7 +43,7 @@ public class BankAccess{
                ;
     }
     
-    public static boolean transferMoney(String senderNIC ,String receiverNIC ,String currency , double amount) throws Exception 
+    public static boolean transferMoney(String senderNIC ,String receiverNIC ,String currency , String amount) throws Exception 
     {
 
         System.out.println("ALALA");
@@ -54,7 +54,7 @@ public class BankAccess{
 
         System.out.println("2");
 
-         return bk.transferMoney(new BankClient("ID002", 12 , currency ),new BankClient("ID003", +12 , currency ) );
+         return bk.transferMoney(new BankClient("ID002",  -1*Double.parseDouble(amount)  , currency ),new BankClient("ID003", Double.parseDouble(amount) , currency ) );
          
     }
     
@@ -66,7 +66,7 @@ public class BankAccess{
     
     public static void main(String[] args) throws Exception 
     {
-        System.out.println(BankAccess.transferMoney("ID002", "ID002","Euro" , 5651));
+        // System.out.println(BankAccess.transferMoney("ID002", "ID002","Euro" , 5651));
 
     }
 
