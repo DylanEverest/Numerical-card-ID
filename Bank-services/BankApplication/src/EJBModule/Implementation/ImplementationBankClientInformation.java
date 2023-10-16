@@ -3,6 +3,7 @@ package EJBModule.Implementation;
 
 import java.sql.Connection;
 
+import CurrencyAccess.CurrencyAccess;
 import EJBModule.Interface.BankClientInformation;
 import EJBModule.Response.BankClient;
 import databaseconnectivity.MysqlConnection;
@@ -76,9 +77,9 @@ public class ImplementationBankClientInformation implements BankClientInformatio
                                     
     }
     @Override
-    public double getCurrentAriary(String deviseID) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCurrentAriary'");
+    public double getCurrentAriary(String deviseID) throws Exception
+    {
+        return CurrencyAccess.getCurrency(deviseID);
     }
 
 

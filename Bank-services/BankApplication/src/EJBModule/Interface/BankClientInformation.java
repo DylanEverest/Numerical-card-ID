@@ -15,7 +15,7 @@ public interface BankClientInformation
 
     public abstract boolean checkTransactionValidityAmount(BankClient bankSender ,BankClient bankReceiver) throws Exception ;
 
-    public abstract double getCurrentAriary(String deviseID) ;
+    public abstract double getCurrentAriary(String deviseID) throws Exception ;
 
         
 
