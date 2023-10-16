@@ -75,17 +75,28 @@ public class ImplementationBankClientInformation implements BankClientInformatio
         }
                                     
     }
-
-    @Override
-    public boolean checkTransactionValidityAmount(BankClient bankSender, BankClient bankReceiver) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'checkTransactionValidityAmount'");
-    }
-
     @Override
     public double getCurrentAriary(String deviseID) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getCurrentAriary'");
     }
+
+
+    @Override
+    public boolean checkTransactionValidityAmount(BankClient bankSender, BankClient bankReceiver) throws Exception {
+
+        BankClient sender= getInformation(bankSender.getCardId()) ;
+        /*
+         * amount in BankClient sender is supposed to be negative if he/she wants to give money
+         */
+        double newAmountEstimated = sender.getAmount() + bankSender.getAmount();
+        if( newAmountEstimated <0)
+        {
+            throw new Exception("Amount can't be negative");
+        }
+        return true;
+    }
+
+
     
 }
