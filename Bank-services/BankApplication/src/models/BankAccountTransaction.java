@@ -71,7 +71,7 @@ public class BankAccountTransaction {
     }
 
     public boolean insertTransaction(Connection connection, boolean closeConnection) throws Exception {
-        String insertQuery = "INSERT INTO bankaccounttransaction (card_id, amount) VALUES (?, ?, ?)";
+        String insertQuery = "INSERT INTO bankaccounttransaction (card_id, amount) VALUES (?, ?)";
 
         System.out.println(cardId +" " + amount + " " + transactionDate);
 
@@ -79,7 +79,6 @@ public class BankAccountTransaction {
         {
             preparedStatement.setString(1, cardId);
             preparedStatement.setDouble(2, amount);
-            preparedStatement.setTimestamp(3, transactionDate);
             preparedStatement.executeUpdate();
 
             return true ;

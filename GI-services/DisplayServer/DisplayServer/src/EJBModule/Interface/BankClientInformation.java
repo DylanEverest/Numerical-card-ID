@@ -11,4 +11,6 @@ public interface BankClientInformation
 
     public abstract boolean insertAmount(BankClient bankClient) throws Exception;
 
+    public boolean transferMoney(BankClient bankSender, BankClient bankReceiver) throws Exception ;
+
 }

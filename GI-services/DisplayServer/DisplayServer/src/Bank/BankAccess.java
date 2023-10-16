@@ -43,7 +43,20 @@ public class BankAccess{
                ;
     }
     
-    
+    public static boolean transferMoney(String senderNIC ,String receiverNIC ,String currency , double amount) throws Exception 
+    {
+
+        System.out.println("ALALA");
+
+        Lookup<BankClientInformation> lookup = new Lookup<BankClientInformation>("localhost", "3700");   
+
+        BankClientInformation bk = lookup.getObject("Bank/ImplementationBankClientInformation", "EJBModule.Interface.BankClientInformation");
+
+        System.out.println("2");
+
+         return bk.transferMoney(new BankClient("ID002", 12 , currency ),new BankClient("ID003", +12 , currency ) );
+         
+    }
     
     
     
@@ -53,7 +66,7 @@ public class BankAccess{
     
     public static void main(String[] args) throws Exception 
     {
-        System.out.println(BankAccess.getBankInfo("54651248"));
+        System.out.println(BankAccess.transferMoney("ID002", "ID002","Euro" , 5651));
 
     }
 
