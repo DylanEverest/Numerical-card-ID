@@ -1,5 +1,7 @@
 package EJBModule.Response;
 
+import EJBModule.Implementation.ImplementationBankClientInformation;
+
 public class BankClient implements java.io.Serializable
 {
     private String cardId;
@@ -16,6 +18,12 @@ public class BankClient implements java.io.Serializable
         setAmount(amount);
     }
     
+    public void setAmountConvert () throws Exception
+    {
+        ImplementationBankClientInformation i = new ImplementationBankClientInformation() ;
+        setAmount(amount * i.getCurrentAriary(getCurrencyID())) ;
+        setCurrencyID("Ariary");
+    }
     
     public String getCardId() 
     {

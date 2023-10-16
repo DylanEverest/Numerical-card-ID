@@ -43,7 +43,21 @@ public class ImplementationBankClientInformation implements BankClientInformatio
     }
 
     @Override
-    public boolean doTransaction(BankClient bankSender, BankClient bankReceiver) throws Exception 
+    public boolean transferMoney(BankClient bankSender, BankClient bankReceiver) throws Exception
+    {
+        bankSender.setAmountConvert();
+        
+        bankReceiver.setAmountConvert();
+
+        if(checkTransactionValidityAmount(bankSender, bankReceiver))
+        {
+            return doTransaction(bankSender, bankReceiver) ;
+        }
+        return false ;
+    }
+
+
+    private boolean doTransaction(BankClient bankSender, BankClient bankReceiver) throws Exception 
     {
         Connection connection =null;
         try
@@ -76,15 +90,13 @@ public class ImplementationBankClientInformation implements BankClientInformatio
         }
                                     
     }
-    @Override
     public double getCurrentAriary(String deviseID) throws Exception
     {
         return CurrencyAccess.getCurrency(deviseID);
     }
 
 
-    @Override
-    public boolean checkTransactionValidityAmount(BankClient bankSender, BankClient bankReceiver) throws Exception {
+    private boolean checkTransactionValidityAmount(BankClient bankSender, BankClient bankReceiver) throws Exception {
 
         BankClient sender= getInformation(bankSender.getCardId()) ;
         /*
