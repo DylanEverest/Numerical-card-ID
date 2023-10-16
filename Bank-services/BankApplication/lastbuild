@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Bank" default="build" basedir=".">
+    
+    <!-- Propriétés -->
+    <property name="src.dir" location="src"/>
+    <property name="build.dir" location="bin"/>
+    <property name="jar.dir" location="dist"/>
+    <!-- Name of the jar file -->
+    <property name="jar.file" value="Bank.jar" />
+
+    <property name="jar.deployed" value="Bank" />
+
+    <property name="lib.dir" value="lib" />
+
+
+
+    <!-- ASADMIN -->
+
+    <property name="glassfish.asadmin" location="/opt/glassfish7/bin/asadmin" />
+
+
+    <!-- Définir le chemin de classe -->
+    <path id="classpath">
+        <!-- Ajoutez ici le chemin vers les bibliothèques Java EE -->
+        <fileset dir="/home/dylan/Desktop/Java/jar">
+            <include name="jakarta.jakartaee-api-10.0.0.jar" />
+            <include name="postgresql-42.3.7.jar" />
+        </fileset>
+        
+    </path>
+
+    <!-- Tâche de nettoyage -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${jar.dir}"/>
+    </target>
+    
+    <!-- Tâche de compilation -->
+    <target name="compile" depends="clean">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath"/>
+    </target>
+    
+    <!-- Tâche de création du JAR -->
+    <target name="jar" depends="compile">
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/${jar.file}" basedir="${build.dir}">
+            <!-- Inclure les fichiers de classe -->
+            <include name="**/*.class"/>
+            
+            <!-- Inclure le dossier "lib" complet -->
+            <zipgroupfileset dir="${lib.dir}" includes="**/*.jar" />
+        </jar>
+        
+        <echo message="Builded!"/>
+    </target>
+
+
+        <!-- Tâche pour undeploy le fichier JAR -->
+        <target name="undeploy" depends="jar">
+
+            <exec executable="${glassfish.asadmin}">
+
+                <arg value="undeploy"/>
+
+                <arg value="${jar.deployed}"/>
+
+            </exec>
+
+            <echo message="Undeployed"/>
+
+        </target>
+
+
+    <!-- Tâche pour déployer le fichier JAR -->
+    <target name="deploy" depends="undeploy">
+
+        <exec executable="${glassfish.asadmin}">
+            <arg value="deploy"/>
+            <arg value="${jar.dir}/${jar.file}"/>
+        </exec>
+        <echo message="Deployed !"/>
+    </target>
+
+    
+    <!-- Tâche par défaut -->
+    <target name="build" depends="deploy">
+        <echo message="Builded and deployed !"/>
+    </target>
+</project>
