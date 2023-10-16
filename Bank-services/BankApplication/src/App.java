@@ -1,9 +1,8 @@
-import java.sql.Connection;
-
-import EJBModule.Implementation.ImplementationBankClientInformation;
-import EJBModule.Response.BankClient;
-import databaseconnectivity.MysqlConnection;
-import models.BankAccountTransaction;
+// import java.sql.Connection;
+// import EJBModule.Implementation.ImplementationBankClientInformation;
+// import EJBModule.Response.BankClient;
+// import databaseconnectivity.MysqlConnection;
+// import models.BankAccountTransaction;
 
 public class App {
     public static void main(String[] args) throws Exception {
