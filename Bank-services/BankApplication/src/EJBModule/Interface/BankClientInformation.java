@@ -11,4 +11,12 @@ public interface BankClientInformation
 
     public abstract boolean insertAmount(BankClient bankClient) throws Exception;
 
+    public abstract boolean doTransaction(BankClient bankSender ,BankClient bankReceiver) throws Exception;
+
+    public abstract boolean checkTransactionValidityAmount(BankClient bankSender ,BankClient bankReceiver) throws Exception ;
+
+    public abstract double getCurrentAriary(String deviseID) ;
+
+        
+
 }

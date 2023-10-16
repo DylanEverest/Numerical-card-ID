@@ -70,6 +70,28 @@ public class BankAccountTransaction {
         }
     }
 
+    public boolean insertTransaction(Connection connection, boolean closeConnection) throws Exception {
+        String insertQuery = "INSERT INTO bankaccounttransaction (card_id, amount, transaction_date) VALUES (?, ?, ?)";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) 
+        {
+            preparedStatement.setString(1, cardId);
+            preparedStatement.setDouble(2, amount);
+            preparedStatement.setTimestamp(3, transactionDate);
+            preparedStatement.executeUpdate();
+
+            return true ;
+        } 
+        finally 
+        {
+            if (closeConnection) 
+            {
+                connection.close();
+                return false ;
+            }
+        }
+    }
+
     public static double getTotalAmountByCardId(MysqlConnection mysqlConnection, String cardId, boolean closeConnection) throws Exception , SQLSyntaxErrorException {
         Connection connection = mysqlConnection.connectToDatabase();
         System.out.println("POINSA");

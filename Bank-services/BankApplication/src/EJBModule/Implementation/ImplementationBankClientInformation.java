@@ -1,5 +1,8 @@
 package EJBModule.Implementation;
 
+
+import java.sql.Connection;
+
 import EJBModule.Interface.BankClientInformation;
 import EJBModule.Response.BankClient;
 import databaseconnectivity.MysqlConnection;
@@ -36,6 +39,53 @@ public class ImplementationBankClientInformation implements BankClientInformatio
         return bankAccountTransaction.insertTransaction(new MysqlConnection("bank","root", "root", 
                                             "jdbc:mysql://localhost:3306/"), false);
 
+    }
+
+    @Override
+    public boolean doTransaction(BankClient bankSender, BankClient bankReceiver) throws Exception 
+    {
+        Connection connection =null;
+        try
+        {
+            connection = new MysqlConnection("bank","root", "root", 
+            "jdbc:mysql://localhost:3306/").connectToDatabase() ;
+    
+    
+            BankAccountTransaction bankAccountTransaction = new BankAccountTransaction();
+            bankAccountTransaction.setAmount(bankSender.getAmount());
+            bankAccountTransaction.setCardId(bankSender.getCardId());
+    
+            bankAccountTransaction.insertTransaction(connection, false);
+    
+            bankAccountTransaction.setAmount(bankReceiver.getAmount());
+            bankAccountTransaction.setCardId(bankReceiver.getCardId());
+    
+            bankAccountTransaction.insertTransaction(connection, false);
+
+            return true;
+        }
+        catch(Exception e)
+        {
+            throw new Exception("SQLConnectivityProblem");
+        }
+        finally
+        {
+            if(connection!=null)
+                connection.close();
+        }
+                                    
+    }
+
+    @Override
+    public boolean checkTransactionValidityAmount(BankClient bankSender, BankClient bankReceiver) throws Exception {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'checkTransactionValidityAmount'");
+    }
+
+    @Override
+    public double getCurrentAriary(String deviseID) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCurrentAriary'");
     }
     
 }
