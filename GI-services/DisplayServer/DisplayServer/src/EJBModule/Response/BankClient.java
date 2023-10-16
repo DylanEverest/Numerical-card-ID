@@ -1,10 +1,18 @@
 package EJBModule.Response;
 
+
 public class BankClient implements java.io.Serializable
 {
     private String cardId;
     private double amount;
     private String currencyID ;
+
+    public BankClient(String cardId, double amount, String currencyID) {
+        this.cardId = cardId;
+        this.amount = amount;
+        this.currencyID = currencyID;
+    }
+
 
     public BankClient() {
     }
@@ -15,7 +23,6 @@ public class BankClient implements java.io.Serializable
         setCardId(cardId);
         setAmount(amount);
     }
-
 
     public String getCardId()
     {

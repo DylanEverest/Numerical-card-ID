@@ -1,6 +1,5 @@
 package EJBModule.Response;
 
-import EJBModule.Implementation.ImplementationBankClientInformation;
 
 public class BankClient implements java.io.Serializable
 {
@@ -8,6 +7,13 @@ public class BankClient implements java.io.Serializable
     private double amount;
     private String currencyID ; 
     
+    public BankClient(String cardId, double amount, String currencyID) {
+        this.cardId = cardId;
+        this.amount = amount;
+        this.currencyID = currencyID;
+    }
+
+
     public BankClient() {
     }
 
@@ -16,13 +22,6 @@ public class BankClient implements java.io.Serializable
     {
         setCardId(cardId);
         setAmount(amount);
-    }
-    
-    public void setAmountConvert () throws Exception
-    {
-        ImplementationBankClientInformation i = new ImplementationBankClientInformation() ;
-        setAmount(amount * i.getCurrentAriary(getCurrencyID())) ;
-        setCurrencyID("Ariary");
     }
     
     public String getCardId() 

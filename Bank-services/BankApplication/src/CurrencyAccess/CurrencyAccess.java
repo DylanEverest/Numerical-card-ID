@@ -11,6 +11,7 @@ public class CurrencyAccess
 
         CurrencyResponse response = ((CurrencyResponse)get.getObject(CurrencyResponse.class));
 
+
         if(convertor.equalsIgnoreCase("ariary"))
         {
             return response.getPrecisionAriary() ;

@@ -45,9 +45,9 @@ public class ImplementationBankClientInformation implements BankClientInformatio
     @Override
     public boolean transferMoney(BankClient bankSender, BankClient bankReceiver) throws Exception
     {
-        bankSender.setAmountConvert();
-        
-        bankReceiver.setAmountConvert();
+        setAmountConvert(bankReceiver);
+
+        setAmountConvert(bankSender);
 
         if(checkTransactionValidityAmount(bankSender, bankReceiver))
         {
@@ -110,6 +110,11 @@ public class ImplementationBankClientInformation implements BankClientInformatio
         return true;
     }
 
-
+    public void setAmountConvert (BankClient bankClient) throws Exception
+    {
+        ImplementationBankClientInformation i = new ImplementationBankClientInformation() ;
+        bankClient.setAmount(bankClient.getAmount() * i.getCurrentAriary(bankClient. getCurrencyID())) ;
+        bankClient.setCurrencyID("Ariary");
+    }
     
 }
