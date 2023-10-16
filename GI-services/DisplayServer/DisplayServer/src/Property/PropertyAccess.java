@@ -23,7 +23,6 @@ public class PropertyAccess
         String html ="";
         if (inf != null) 
         {
-            System.out.println(inf.length);
 
             for (int i = 0; i < inf.length; i++) {
                 html = html + "<div class=\"col-lg-4 col-md-6 u-s-m-b-30\">\n" +
@@ -43,7 +42,7 @@ public class PropertyAccess
                 "                        <a>Dayle</a></span></span>\n" +
                 "            </div>\n" +
                 "            <span class=\"bp-mini__h1\">\n" +
-                "                <a> Deseases name:"+ inf[i].getAddress()+ " </a></span>\n" +
+                "                <a> Adress :"+ inf[i].getAddress()+ " </a></span>\n" +
                 "        </div>\n" +
                 "    </div>\n" +
                 "    </div>\n" 
