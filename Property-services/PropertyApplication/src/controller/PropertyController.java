@@ -44,6 +44,8 @@ public class PropertyController
         response.setPrecisionAriary(cur.getPrecisionAriary());
         response.setPrecisionEuro(cur.getPrecisionEuro());
         response.setPrecisionDollar(cur.getPrecisionDollar());
+        response.setPrecesionAriaryAchat(cur.getPrecesionAriaryAchat());
+        response.setPrecisionAriaryVente(cur.getPrecisionAriaryVente());
 
         return response;
     }

@@ -9,14 +9,19 @@ public class CurrencyResponse implements Serializable
     double precisionAriary;
     double precisionEuro;
     double precisionDollar;
+    double precesionAriaryAchat ;
+    double precisionAriaryVente ;
 
 
     public CurrencyResponse(){}
     
-    public CurrencyResponse(@JsonbProperty("precisionAriary")double precisionAriary,@JsonbProperty("precisionEuro") double precisionEuro,@JsonbProperty("precisionDollar") double precisionDollar) {
+    public CurrencyResponse(@JsonbProperty("precisionAriary")double precisionAriary,@JsonbProperty("precisionEuro") double precisionEuro,@JsonbProperty("precisionDollar") double precisionDollar
+                        ,@JsonbProperty("precesionAriaryAchat") double precisionAriaryAchat , @JsonbProperty("precisionAriaryVente") double precisionAriaryVente ) {
         this.precisionAriary = precisionAriary;
         this.precisionEuro = precisionEuro;
         this.precisionDollar = precisionDollar;
+        this.precesionAriaryAchat = precisionAriaryAchat ;
+        this.precisionAriaryVente = precisionAriaryVente;
     }
 
     public double getPrecisionAriary() {
@@ -36,5 +41,17 @@ public class CurrencyResponse implements Serializable
     }
     public void setPrecisionDollar(double precisionDollar) {
         this.precisionDollar = precisionDollar;
+    }    
+    public double getPrecesionAriaryAchat() {
+        return precesionAriaryAchat;
+    }
+    public void setPrecesionAriaryAchat(double precesionAriaryAchat) {
+        this.precesionAriaryAchat = precesionAriaryAchat;
+    }
+    public double getPrecisionAriaryVente() {
+        return precisionAriaryVente;
+    }
+    public void setPrecisionAriaryVente(double precisionAriaryVente) {
+        this.precisionAriaryVente = precisionAriaryVente;
     }    
 }

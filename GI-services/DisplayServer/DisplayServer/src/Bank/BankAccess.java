@@ -73,7 +73,7 @@ public class BankAccess{
 
         System.out.println("2");
 
-         return bk.transferMoney(new BankClient("ID002",  -1*Double.parseDouble(amount)  , currency ),new BankClient("ID003", Double.parseDouble(amount) , currency ) );
+         return bk.transferMoney(new BankClient("ID002",  -1*Double.parseDouble(amount)  , currency+"Achat" ),new BankClient("ID003", Double.parseDouble(amount) , currency+"Vente" ) );
          
     }
     

@@ -30,11 +30,12 @@ create table currency (
 
     currency_id varchar(50) primary key
 ) ;
-
 create table currencyequivalence(
     pk_id serial primary key ,
     currency_id_ariary varchar(50) default('Ariary') REFERENCES currency(currency_id) ,
     amount_Ariary double precision default(1) ,
+    amount_Ariary_achat double precision default(1) ,
+    amount_Ariary_vente double precision default(1) ,
     currency_id_Euro varchar(50) default('Euro') REFERENCES currency(currency_id) ,
     amount_Euro double precision ,
     currency_id_Dollar varchar(50) default('Dollar') REFERENCES currency(currency_id) ,

@@ -19,7 +19,7 @@ public class App {
         // }
         // System.out.println(babas[0].getAddress());
 
-        // CurrencyTable cur=  CurrencyTable.getCurrencyNow(new PgConnection("property","postgres","","jdbc:postgresql://localhost:5432/").connectToDataBase(), false) ;
+        CurrencyTable cur=  CurrencyTable.getCurrencyNow(new PgConnection("property","postgres","","jdbc:postgresql://localhost:5432/").connectToDataBase(), false) ;
 
         // CurrencyResponse response = new CurrencyResponse();
         
