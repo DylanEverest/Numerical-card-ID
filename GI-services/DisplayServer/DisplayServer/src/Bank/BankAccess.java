@@ -4,7 +4,6 @@ import EJBModule.Interface.BankClientInformation;
 import EJBModule.Response.BankClient;
 import EJBModule.glassfish7.Lookup;
 import Health.HealthAccess;
-import WebserviceModule.response.Info;
 
 public class BankAccess{
     
@@ -50,17 +49,15 @@ public class BankAccess{
 
         try 
         {
-            Info inf = HealthAccess.getGeneralINFO(senderNIC);
-
-            
+            HealthAccess.getGeneralINFO(senderNIC);
         } 
         catch (Exception e) 
         {
             throw new Exception("Unfound NIC"+senderNIC);
         }
-        try{
-            Info inf2 = HealthAccess.getGeneralINFO(receiverNIC);
-
+        try
+        {
+            HealthAccess.getGeneralINFO(receiverNIC);
         }
         catch(Exception e2)
         {
