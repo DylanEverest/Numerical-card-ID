@@ -1,23 +1,25 @@
 package Property;
 
+import java.math.BigDecimal;
+
 public class GeometryProperty 
 {
-    double [] longitudes;
+    BigDecimal [] longitudes;
 
-    double [] latitudes ;
+    BigDecimal [] latitudes ;
 
     
     
     
     public GeometryProperty(String [] latitudes ,String [] longitudes) 
     {
-        double [] latitudes0 = new double [latitudes.length] ;
-        double [] longitudes0 = new double [longitudes.length] ;
+        BigDecimal [] latitudes0 = new BigDecimal [latitudes.length] ;
+        BigDecimal [] longitudes0 = new BigDecimal [longitudes.length] ;
 
         for (int i = 0; i < latitudes.length; i++)
         {
-            latitudes0[i] =Double.parseDouble(latitudes[i]);            
-            longitudes0[i] =Double.parseDouble(longitudes[i]);
+            latitudes0[i] = new BigDecimal (latitudes[i]);            
+            longitudes0[i] =new BigDecimal(longitudes[i]);
         }
 
         setLatitudes(latitudes0);
@@ -25,22 +27,22 @@ public class GeometryProperty
 
     }
 
-    public double[] getLongitudes() 
+    public BigDecimal[] getLongitudes() 
     {
         return longitudes;
     }
 
-    public void setLongitudes(double[] longitudes) 
+    public void setLongitudes(BigDecimal[] longitudes) 
     {
         this.longitudes = longitudes;
     }
 
-    public double[] getLatitudes() 
+    public BigDecimal[] getLatitudes() 
     {
         return latitudes;
     }
 
-    public void setLatitudes(double[] latitudes) 
+    public void setLatitudes(BigDecimal[] latitudes) 
     {
         this.latitudes = latitudes;
     }
