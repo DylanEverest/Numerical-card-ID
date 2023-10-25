@@ -71,7 +71,7 @@ public class PropertyController
 
     }
     
-    @GET
+    @POST
     @Path("/map")
     @Produces(MediaType.APPLICATION_JSON)
     public GeometryProperty[] getMap(String cardID) throws Exception

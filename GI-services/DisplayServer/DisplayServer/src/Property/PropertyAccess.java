@@ -1,5 +1,6 @@
 package Property;
 
+import WebserviceModule.Jersey.Get;
 import WebserviceModule.Jersey.Post;
 import WebserviceModule.response.GeometryProperty;
 import WebserviceModule.response.PropertyResponse;
@@ -17,6 +18,15 @@ public class PropertyAccess
         return ((PropertyResponse [])ps.getObject( obj, PropertyResponse [].class)) ;
    
     }
+
+    public static GeometryProperty [] getPropertiesWithCoordinates(String NIC) throws Exception 
+    {
+        Post<String> post = new Post<String>("http://dylan-aspireek571g:8080/Property/resources/property/map");
+        
+        return (GeometryProperty []) post.getObject(NIC, GeometryProperty [].class);
+    }
+
+
 
     public static String getHTMLProperties(String NIC) throws Exception {
         PropertyResponse [] inf = PropertyAccess.getPropertiesByNIC(NIC);
@@ -62,6 +72,7 @@ public class PropertyAccess
 
 
     public static void main(String[] args) throws Exception {
-        System.out.println(PropertyAccess.getHTMLProperties("ID002")) ;
+        GeometryProperty[] vita = PropertyAccess. getPropertiesWithCoordinates("12345abc");
+        System.out.println("misa");
     }
 }
