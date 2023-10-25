@@ -1,25 +1,25 @@
 
 
-import databaseconnectivity.PgConnection;
-import models.CurrencyTable;
-import models.PropertyView;
-import response.CurrencyResponse;
-import response.PropertyResponse;
-import java.sql.Connection;
+// import databaseconnectivity.PgConnection;
+// import models.CurrencyTable;
+// import models.PropertyView;
+// import response.CurrencyResponse;
+// import response.PropertyResponse;
+// import java.sql.Connection;
 
-import databaseconnectivity.PgConnection;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
-import models.CurrencyTable;
-import models.GeometryModels;
-import models.PropertyView;
-import response.CurrencyResponse;
-import response.GeometryProperty;
-import response.PropertyResponse;
+// import databaseconnectivity.PgConnection;
+// import jakarta.ws.rs.Consumes;
+// import jakarta.ws.rs.GET;
+// import jakarta.ws.rs.POST;
+// import jakarta.ws.rs.Path;
+// import jakarta.ws.rs.Produces;
+// import jakarta.ws.rs.core.MediaType;
+// import models.CurrencyTable;
+// import models.GeometryModels;
+// import models.PropertyView;
+// import response.CurrencyResponse;
+// import response.GeometryProperty;
+// import response.PropertyResponse;
 
 
 public class App {
