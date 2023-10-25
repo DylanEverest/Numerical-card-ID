@@ -112,7 +112,7 @@ public class GeometryModels
     }
     
 
-    public GeometryModels [] selectAllByCardID(Connection connection ,String cardID ,boolean closeable) throws Exception
+    public static GeometryModels [] selectAllByCardID(Connection connection ,String cardID ,boolean closeable) throws Exception
     {
         try
         {

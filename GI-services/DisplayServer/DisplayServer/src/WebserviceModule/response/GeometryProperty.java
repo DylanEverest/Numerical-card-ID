@@ -1,4 +1,4 @@
-package Property;
+package WebserviceModule.response;
 
 import java.math.BigDecimal;
 
@@ -8,9 +8,13 @@ public class GeometryProperty
 
     BigDecimal [] latitudes ;
 
+    PropertyResponse property;
     
     
-    
+    public GeometryProperty() 
+    {
+    }
+
     public GeometryProperty(String [] latitudes ,String [] longitudes) 
     {
         BigDecimal [] latitudes0 = new BigDecimal [latitudes.length] ;
@@ -45,6 +49,14 @@ public class GeometryProperty
     public void setLatitudes(BigDecimal[] latitudes) 
     {
         this.latitudes = latitudes;
+    }
+
+    public PropertyResponse getProperty() {
+        return property;
+    }
+
+    public void setProperty(PropertyResponse property) {
+        this.property = property;
     }
 
 }

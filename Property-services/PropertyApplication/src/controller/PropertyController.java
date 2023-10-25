@@ -1,5 +1,7 @@
 package controller;
 
+import java.sql.Connection;
+
 import databaseconnectivity.PgConnection;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -8,8 +10,10 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import models.CurrencyTable;
+import models.GeometryModels;
 import models.PropertyView;
 import response.CurrencyResponse;
+import response.GeometryProperty;
 import response.PropertyResponse;
 
 @Path("/property")
@@ -49,5 +53,49 @@ public class PropertyController
 
         return response;
     }
+
+    @POST
+    @Path("/newadress")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public boolean insertAdress(GeometryProperty geometryProperty) throws Exception
+    {
+
+        GeometryModels geo = new GeometryModels();
+        geo.setLatitude(geometryProperty.getLatitudes());
+        geo.setLongitude(geometryProperty.getLongitudes());
+
+        geo.setProperty(new PropertyView(0, geometryProperty.getProperty().getAddress(), 0, null, null, null));
+
+
+        return geo.insertAdress(new PgConnection("property","postgres","","jdbc:postgresql://localhost:5432/").connectToDataBase(), true);
+
+    }
+    
+    @GET
+    @Path("/map")
+    @Produces(MediaType.APPLICATION_JSON)
+    public GeometryProperty[] getMap(String cardID) throws Exception
+    {
+        Connection con = new PgConnection("property","postgres","","jdbc:postgresql://localhost:5432/").connectToDataBase();
+        GeometryModels [] geos = GeometryModels.selectAllByCardID(con, cardID, false);
+
+        con.close();        
+
+        // tranform datas
+        GeometryProperty [] res = new GeometryProperty[geos.length];
+        for (int i = 0; i < res.length; i++) {
+            
+            res[i] = new GeometryProperty();
+            
+            res[i].setLatitudes(geos[i].getLatitude());
+            res[i].setLongitudes(geos[i].getLongitude());
+            GeometryModels g =geos [i] ;
+            res[i].setProperty( new PropertyResponse(g.getProperty().getPropertyId(), g.getProperty().getAddress(), g.getProperty().getPropertyPersonId(), cardID, g.getProperty().getPurchaseDate(), g.getProperty().getSold()));
+        }
+
+        return res;
+        
+    }
+
 
 }

@@ -1,6 +1,7 @@
 package Property;
 
 import WebserviceModule.Jersey.Post;
+import WebserviceModule.response.GeometryProperty;
 import WebserviceModule.response.PropertyResponse;
 
 public class PropertyAccess
