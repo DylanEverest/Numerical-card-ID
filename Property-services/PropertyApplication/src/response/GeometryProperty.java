@@ -1,8 +1,11 @@
 package response;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class GeometryProperty 
+import jakarta.json.bind.annotation.JsonbProperty;
+
+public class GeometryProperty implements Serializable
 {
     BigDecimal [] longitudes;
 
@@ -13,6 +16,13 @@ public class GeometryProperty
     
     public GeometryProperty() 
     {
+    }
+
+    public GeometryProperty(@JsonbProperty("latitudes") BigDecimal [] latitudes,@JsonbProperty("longitudes") BigDecimal [] longitudes ,@JsonbProperty("property") PropertyResponse property )
+    {
+        setLatitudes(latitudes);
+        setLongitudes(longitudes);
+        setProperty(property);
     }
 
     public GeometryProperty(String [] latitudes ,String [] longitudes) 
