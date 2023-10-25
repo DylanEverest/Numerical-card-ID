@@ -27,7 +27,8 @@ public class PropertyAccess
 
 
 
-    public static String getHTMLProperties(String NIC) throws Exception {
+    public static String getHTMLProperties(String NIC) throws Exception 
+    {
         PropertyResponse [] inf = PropertyAccess.getPropertiesByNIC(NIC);
 
         String html ="";
