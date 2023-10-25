@@ -8,34 +8,44 @@ public class CurrencyResponse
     double precesionAriaryAchat ;
     double precisionAriaryVente ;
     
-    public double getPrecisionAriary() {
+    public double getPrecisionAriary() 
+    {
         return precisionAriary;
     }
-    public void setPrecisionAriary(double precisionAriary) {
+    public void setPrecisionAriary(double precisionAriary) 
+    {
         this.precisionAriary = precisionAriary;
     }
-    public double getPrecisionEuro() {
+    public double getPrecisionEuro() 
+    {
         return precisionEuro;
     }
-    public void setPrecisionEuro(double precisionEuro) {
+    public void setPrecisionEuro(double precisionEuro) 
+    {
         this.precisionEuro = precisionEuro;
     }
-    public double getPrecisionDollar() {
+    public double getPrecisionDollar() 
+    {
         return precisionDollar;
     }
-    public void setPrecisionDollar(double precisionDollar) {
+    public void setPrecisionDollar(double precisionDollar) 
+    {
         this.precisionDollar = precisionDollar;
     }
-    public double getPrecesionAriaryAchat() {
+    public double getPrecesionAriaryAchat() 
+    {
         return precesionAriaryAchat;
     }
-    public void setPrecesionAriaryAchat(double precesionAriaryAchat) {
+    public void setPrecesionAriaryAchat(double precesionAriaryAchat) 
+    {
         this.precesionAriaryAchat = precesionAriaryAchat;
     }
-    public double getPrecisionAriaryVente() {
+    public double getPrecisionAriaryVente() 
+    {
         return precisionAriaryVente;
     }
-    public void setPrecisionAriaryVente(double precisionAriaryVente) {
+    public void setPrecisionAriaryVente(double precisionAriaryVente) 
+    {
         this.precisionAriaryVente = precisionAriaryVente;
     }    
 
