@@ -2,6 +2,11 @@ package models;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GeometryModels 
 {
@@ -10,6 +15,10 @@ public class GeometryModels
     BigDecimal[] latitude;
     
     BigDecimal[] longitude;
+
+    public GeometryModels() {
+    }
+
 
     public GeometryModels(PropertyView property, BigDecimal[] latitude, BigDecimal[] longitude) 
     {
@@ -51,10 +60,55 @@ public class GeometryModels
         }
     }
 
-    public static GeometryModels selectGeomByProperty(Connection connection , PropertyView property ,boolean closeable)
+    public static GeometryModels selectGeomByProperty(Connection connection, PropertyView property, boolean closeable) throws SQLException 
     {
-
-        return null;
+        GeometryModels geom = new GeometryModels();
+        geom.setProperty(property);
+    
+        // Define the SQL query to retrieve latitude and longitude for the given property
+        String sql = "SELECT property_latitude, property_longitude FROM property_geometry WHERE property_id = ?";
+    
+        try (PreparedStatement statement = connection.prepareStatement(sql)) 
+        {
+            statement.setInt(1, property.getPropertyId()); // Assuming property_id is the primary key of the PropertyView
+    
+            try (ResultSet resultSet = statement.executeQuery()) 
+            {
+                List<BigDecimal> latitudeList = new ArrayList<>();
+                List<BigDecimal> longitudeList = new ArrayList<>();
+    
+                while (resultSet.next()) 
+                {
+                    BigDecimal latitude = resultSet.getBigDecimal("property_latitude");
+                    BigDecimal longitude = resultSet.getBigDecimal("property_longitude");
+    
+                    latitudeList.add(latitude);
+                    longitudeList.add(longitude);
+                }
+    
+                geom.setLatitude(latitudeList.toArray(new BigDecimal[0]));
+                geom.setLongitude(longitudeList.toArray(new BigDecimal[0]));
+    
+                return geom;
+            } 
+            catch (SQLException e) 
+            {
+                // Handle any errors that occur during result set retrieval
+                e.printStackTrace();
+                throw e; 
+            }
+        } 
+        catch (SQLException e) 
+        {
+            // Handle any errors that occur during query execution
+            e.printStackTrace();
+            throw e;
+        }
+        finally 
+        {
+            if(closeable) connection.close();
+        }
+    
     }
 
     public PropertyView getProperty() 
