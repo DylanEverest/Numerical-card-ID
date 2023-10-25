@@ -8,30 +8,19 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
 })
 .addTo(map);
 
-
-
 var array_lglt =[];
-
 
 function addCoordinate(coupleLtLg) 
 {
-    console.log(coupleLtLg);
-    array_lglt.push(coupleLtLg);
+    array_lglt.push([coupleLtLg.lat ,coupleLtLg.lng]);
     L.marker([coupleLtLg.lat ,coupleLtLg.lng]).addTo(map) ;
+    drawPolygon();
 }
 
 function drawPolygon() 
 {
-
+    L.polygon(array_lglt).addTo(map); 
 }
-
-//     var marker = L.marker([51.5, -0.09]).addTo(map);
-
-// var polygon = L.polygon([
-//     [51.509, -0.08],
-//     [51.503, -0.06],
-//     [51.51, -0.047]
-// ]).addTo(map);
 
 
 function onMapClick(e) 
