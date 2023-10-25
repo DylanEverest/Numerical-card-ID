@@ -1,6 +1,5 @@
 package Property;
 
-import WebserviceModule.Jersey.Get;
 import WebserviceModule.Jersey.Post;
 import WebserviceModule.response.GeometryProperty;
 import WebserviceModule.response.PropertyResponse;
