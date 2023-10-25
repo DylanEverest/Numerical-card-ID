@@ -22,7 +22,7 @@ public class PropertyAccess
     public static GeometryProperty [] getPropertiesWithCoordinates(String NIC) throws Exception 
     {
         Post<String> post = new Post<String>("http://dylan-aspireek571g:8080/Property/resources/property/map");
-        
+
         return (GeometryProperty []) post.getObject(NIC, GeometryProperty [].class);
     }
 
@@ -72,7 +72,7 @@ public class PropertyAccess
 
 
     public static void main(String[] args) throws Exception {
-        GeometryProperty[] vita = PropertyAccess. getPropertiesWithCoordinates("12345abc");
-        System.out.println("misa");
+        // GeometryProperty[] vita = PropertyAccess. getPropertiesWithCoordinates("12345abc");
+        // System.out.println("misa");
     }
 }
