@@ -53,7 +53,10 @@ public class PropertyAccess
     }
     
 
-
+    public static GeometryProperty getGeometryProperty(String [] inputsLatitudes ,String [] inputsLongitudes)
+    {
+        return new GeometryProperty(inputsLatitudes, inputsLongitudes) ;
+    }
 
 
 
