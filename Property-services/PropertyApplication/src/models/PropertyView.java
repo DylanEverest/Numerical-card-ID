@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import databaseconnectivity.PgConnection;
 
 import java.sql.Date; // Importez la classe Date pour utiliser les types DATE.
 
@@ -29,10 +28,10 @@ public class PropertyView {
 
     // Getters and setters for the fields
 
-    public static PropertyView[] selectFromPropertyView(PgConnection sqliteConnection, String cardId) throws Exception 
+    public static PropertyView[] selectFromPropertyView(Connection connection, String cardId ,boolean closeable) throws Exception 
     {
         List<PropertyView> results = new ArrayList<>();
-        Connection connection = sqliteConnection.connectToDataBase();
+
     
         String selectQuery = "SELECT * FROM property_view WHERE card_id = ? AND sold IS NULL";
     
@@ -58,7 +57,7 @@ public class PropertyView {
         } 
         finally 
         {
-            connection.close();
+            if(closeable) connection.close();
         }
     }
     

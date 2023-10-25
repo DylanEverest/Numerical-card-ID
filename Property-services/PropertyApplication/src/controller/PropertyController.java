@@ -21,7 +21,7 @@ public class PropertyController
     @Consumes(MediaType.APPLICATION_JSON)
     public PropertyResponse [] getPropertyByNIC(PropertyResponse propertyResponse) throws Exception
     {
-        PropertyView[] views = PropertyView.selectFromPropertyView(new PgConnection("property","postgres","","jdbc:postgresql://localhost:5432/"), propertyResponse.getCardId());
+        PropertyView[] views = PropertyView.selectFromPropertyView(new PgConnection("property","postgres","","jdbc:postgresql://localhost:5432/").connectToDataBase(), propertyResponse.getCardId() ,true);
 
         PropertyResponse[] babas = new PropertyResponse[views.length];
 
