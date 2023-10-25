@@ -28,12 +28,88 @@ public class GeometryModels
     }
 
 
-    public boolean insert(Connection connection , boolean closeable)
-    {
 
-        
-        return true;
+    public boolean insertAdress(Connection connection, boolean closeable) 
+    {
+        String insertPropertySQL = "INSERT INTO property (address) VALUES (?)";
+        String insertGeometrySQL = "INSERT INTO property_geometry (property_id, property_latitude, property_longitude) VALUES (?, ?, ?)";
+    
+        try 
+        {
+            // Start a transaction
+            connection.setAutoCommit(false);
+    
+            // Step 1: Insert the address into the property table
+            try (PreparedStatement propertyStatement = connection.prepareStatement(insertPropertySQL, PreparedStatement.RETURN_GENERATED_KEYS)) 
+            {
+                propertyStatement.setString(1, property.getAddress());
+                int rowsAffected = propertyStatement.executeUpdate();
+    
+                if (rowsAffected == 0) 
+                {
+                    // Insertion failed
+                    connection.rollback(); // Rollback the transaction
+                    return false;
+                }
+    
+                // Get the generated property_id
+                try (ResultSet generatedKeys = propertyStatement.getGeneratedKeys()) 
+                {
+                    if (generatedKeys.next()) 
+                    {
+                        int propertyId = generatedKeys.getInt(1);
+    
+                        // Step 2: Insert latitude and longitude into the property_geometry table
+                        try (PreparedStatement geometryStatement = connection.prepareStatement(insertGeometrySQL)) 
+                        {
+                            for (int i = 0; i < this.getLatitude().length; i++) {
+                                geometryStatement.setInt(1, propertyId);
+                                geometryStatement.setBigDecimal(2, this.getLatitude()[i]);
+                                geometryStatement.setBigDecimal(3, this.getLongitude()[i]);
+                                geometryStatement.executeUpdate();
+                            }
+    
+                            // Commit the transaction
+                            connection.commit();
+                            return true;
+                        }
+                    } else {
+                        // Insertion failed
+                        connection.rollback(); // Rollback the transaction
+                        return false;
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            // Handle any SQL exceptions and rollback the transaction
+            try 
+            {
+                connection.rollback();
+            } 
+            catch (SQLException rollbackException) 
+            {
+                // Handle rollback exception
+                rollbackException.printStackTrace();
+            }
+    
+            e.printStackTrace();
+        } 
+        finally 
+        {
+            try 
+            {
+                // Restore auto-commit mode
+                connection.setAutoCommit(true);
+            } 
+            catch (SQLException e) 
+            {
+                e.printStackTrace();
+            }
+        }
+    
+        return false;
     }
+    
 
     public GeometryModels [] selectAllByCardID(Connection connection ,String cardID ,boolean closeable) throws Exception
     {
