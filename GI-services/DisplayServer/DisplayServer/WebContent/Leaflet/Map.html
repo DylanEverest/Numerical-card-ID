@@ -1,19 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- leaflet css and leaflet js  -->
-    <link rel="stylesheet" href="../LeafletDep/leaflet.css" />
-    <script src="../LeafletDep/leaflet.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- leaflet css and leaflet js  -->
+        <link rel="stylesheet" href="../LeafletDep/leaflet.css" />
+        <link rel="stylesheet" href="../css/app.css">
+        <!--====== Vendor Css ======-->
+        <link rel="stylesheet" href="../css/vendor.css">
 
-    <title>Map</title>
-</head>
-<body>
-    <div id="map" style="height: 363px;"></div>
-    
-</body>
-<script src="../js/Map.js"></script>
+        <!--====== Utility-Spacing ======-->
+        <link rel="stylesheet" href="../css/utility.css">
+
+        <script src="../LeafletDep/leaflet.js"></script>
+
+        <title>Map</title>
+    </head>
+
+    <style>
+    </style>
+
+    <body>
+        <div id="app">
+            <header class="header--style-1 header--box-shadow">
+                <nav class="primary-nav primary-nav-wrapper--border">
+                    <div class="container">
+                        <div class="primary-nav">
+                            <h1> Properties</h1>
+                        </div>
+                    </div>
+                </nav>
+
+            </header>
+            <main>
+                <div id="empty">
+
+                </div>
+                <div id="containermap"  >
+
+                    <div id="map"></div>
+                
+                    <div>
+                    </div>
+                </div>
+            
+            </main>
+            <footer>
+            </footer>
+        </div>
+
+
+    </body>
+
+    <script src="../js/Map.js"></script>
 
 </html>

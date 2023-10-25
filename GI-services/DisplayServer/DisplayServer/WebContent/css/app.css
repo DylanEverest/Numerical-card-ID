@@ -6574,3 +6574,20 @@ fieldset {
   border-radius: 6px;
   transition: background-color 0.5s ease-in, border-color 0.5s ease-in
 }
+
+#map {
+        
+  height: 500px;
+  width: 400px;
+  border-style: groove;
+}
+
+#empty {
+  margin-bottom: 25px;
+}
+
+#containermap
+{
+  display: flex; 
+}
+
