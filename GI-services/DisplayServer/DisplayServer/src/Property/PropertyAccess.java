@@ -63,7 +63,7 @@ public class PropertyAccess
                 "                        <a>Dayle</a></span></span>\n" +
                 "            </div>\n" +
                 "            <span class=\"bp-mini__h1\">\n" +
-                "                <a> Adress :"+ inf[i].getAddress()+ " </a></span>\n" +
+                "                <a href='MapSpecific.jsp?adressID="+inf[i].getPropertyId()+"'> Adress :"+ inf[i].getAddress()+ " </a></span>\n" +
                 "        </div>\n" +
                 "    </div>\n" +
                 "    </div>\n" 

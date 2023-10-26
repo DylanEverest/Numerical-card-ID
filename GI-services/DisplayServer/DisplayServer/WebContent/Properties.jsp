@@ -95,12 +95,12 @@
     
                                             <span class="service__info-text-2">Click here</span></div>
                                     </div>
-</a>
+                                </a>
 
                                 </div>
                                 <div class="col-lg-4 col-md-6 u-s-m-b-30">
                                     <a href=<%= "Amount.jsp?paramName="+ request.getParameter("paramName") %>>
-<div class="service u-h-100">
+                                    <div class="service u-h-100">
                                         <div class="service__icon"><i class="fas fa-redo"></i></div>
                                         <div class="service__info-wrap">
     
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 u-s-m-b-30">
                                     <a href=<%= "Properties.jsp?paramName="+ request.getParameter("paramName") %>>
-<div class="service u-h-100">
+                                    <div class="service u-h-100">
                                         <div class="service__icon"><i class="fas fa-headphones-alt"></i></div>
                                         <div class="service__info-wrap">
     
