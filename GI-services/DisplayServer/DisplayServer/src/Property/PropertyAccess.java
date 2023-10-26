@@ -1,5 +1,6 @@
 package Property;
 
+import Converter.Converter;
 import Health.HealthAccess;
 import WebserviceModule.Jersey.Post;
 import WebserviceModule.response.GeometryProperty;
@@ -78,7 +79,84 @@ public class PropertyAccess
     {
         GeometryProperty geos= PropertyAccess.getGeometryProperty(adressID);
 
-        String map = ""+geos ;
+        String arrayMap = Converter.getArrayMap(geos);
+
+        String map = "<script>\n" +
+                    "var map = L.map('map').setView([-18.766947, 46.869107], 6.2);\n" +
+                    "L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {\n" +
+                    "maxZoom: 10000000,\n" +
+                    "attribution: '&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>'\n" +
+                    "}).addTo(map);\n" +
+                    "var array_lglt ="+arrayMap +" ;\n" +
+                    "var polygon = L.polygon(array_lglt).addTo(map);\n" +
+                    "function addCoordinate(coupleLtLg) {\n" +
+                    "array_lglt.push([coupleLtLg.lat, coupleLtLg.lng]);\n" +
+                    "L.marker([coupleLtLg.lat, coupleLtLg.lng]).addTo(map);\n" +
+                    "drawPolygon();\n" +
+                    "duplicateLongitudeLatitude(coupleLtLg.lat, coupleLtLg.lng);\n" +
+                    "}\n" +
+                    "function drawPolygon() {\n" +
+                    "map.removeLayer(polygon);\n" +
+                    "polygon = L.polygon(array_lglt);\n" +
+                    "polygon.addTo(map);\n" +
+                    "}\n" +
+                    "function duplicateLongitudeLatitude(latitude, longitude) {\n" +
+                    "const container = document.querySelector('.dash-address-manipulation');\n" +
+                    "addFieldset(container, latitude, longitude);\n" +
+                    "}\n" +
+                    "function onMapClick(e) {\n" +
+                    "addCoordinate(e.latlng);\n" +
+                    "}\n" +
+                    "map.on('click', onMapClick);\n" +
+                    "// INPUT\n" +
+                    "const addButton = document.getElementById('additems');\n" +
+                    "const deleteButton = document.getElementById('deleteitems');\n" +
+                    "const container = document.querySelector('.dash-address-manipulation');\n" +
+                    "const refreshButton = document.getElementById('refreshitems');\n" +
+                    "addButton.addEventListener('click', function (event) {\n" +
+                    "event.preventDefault();\n" +
+                    "addFieldset(container);\n" +
+                    "});\n" +
+                    "deleteButton.addEventListener('click', function (event) {\n" +
+                    "event.preventDefault();\n" +
+                    "removeLastFieldset(container);\n" +
+                    "});\n" +
+                    "refreshButton.addEventListener('click', function (event) {\n" +
+                    "event.preventDefault();\n" +
+                    "const fieldsets = container.querySelectorAll('.gl-inline');\n" +
+                    "while (fieldsets.length > 1) {\n" +
+                    "container.removeChild(fieldsets[fieldsets.length - 1]);\n" +
+                    "}\n" +
+                    "});\n" +
+                    "function createFieldset(latitude, longitude) {\n" +
+                    "const fieldset = document.createElement('div');\n" +
+                    "fieldset.className = 'gl-inline';\n" +
+                    "fieldset.innerHTML = \n" +
+                    "'<div class=\"u-s-m-b-30\">' +\n" +
+                    "'<label class=\"gl-label\" for=\"latitude\">Latitude *</label>' +\n" +
+                    "'<input name=\"latitude[]\" class=\"input-text input-text--primary-style\" type=\"text\" id=\"latitude\" placeholder=\"Latitude\" value=\"' + latitude + '\">' +\n" +
+                    "'</div>' +\n" +
+                    "'<div class=\"u-s-m-b-30\">' +\n" +
+                    "'<label class=\"gl-label\" for=\"longitude\">Longitude *</label>' +\n" +
+                    "'<input name=\"longitude[]\" class=\"input-text input-text--primary-style\" type=\"text\" id=\"longitude\" placeholder=\"Longitude\" value=\"' + longitude + '\">' +\n" +
+                    "'</div>';\n" +
+                    "return fieldset;\n" +
+                    "}\n" +
+                    "function addFieldset(container, latitude, longitude) {\n" +
+                    "const newFieldset = createFieldset(latitude, longitude);\n" +
+                    "const lastFieldset = container.lastElementChild;\n" +
+                    "container.insertBefore(newFieldset, lastFieldset);\n" +
+                    "}\n" +
+                    "function removeLastFieldset(container) {\n" +
+                    "const fieldsets = container.querySelectorAll('.gl-inline');\n" +
+                    "if (fieldsets.length >= 1) {\n" +
+                    "container.removeChild(fieldsets[fieldsets.length - 1]);\n" +
+                    "}\n" +
+                    "}\n" +
+                    "</script>";
+    
+
+    
 
         
 
@@ -108,7 +186,7 @@ public class PropertyAccess
 
     public static GeometryProperty getGeometryProperty(String adressID) throws Exception
     {
-        Post <String> p = new Post<String>("http://dylan-aspireek571g:8080/Property/resources/property/associatePersonProperty/getGeom");         
+        Post <String> p = new Post<String>("http://dylan-aspireek571g:8080/Property/resources/property/getGeom");         
 
         return ((GeometryProperty)p.getObject(adressID, GeometryProperty.class)) ;
     }

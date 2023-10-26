@@ -1,3 +1,4 @@
+<%@ page import="jakarta.servlet.http.HttpServletRequest" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -84,7 +85,10 @@
                     </div>
 
                 </div>
-            
+
+                <!--  -->
+
+                
             </main>
             <footer>
             </footer>
@@ -93,7 +97,7 @@
 
     </body>
 
-    <script  src="js/Map/Map.js"></script>
+    <%= Property.PropertyAccess.getScriptMap(request.getParameter("adressID"))  %>
 
-    <%= %>
+
 </html>
