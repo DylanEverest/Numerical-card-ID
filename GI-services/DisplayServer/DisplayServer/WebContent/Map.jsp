@@ -62,8 +62,14 @@
                                                     </div>
 
                                                     <span class="dash__text u-s-m-b-30">Search information</span>
-                                                    <form class="dash-address-manipulation" method="GET" action="#">
+                                                    <form class="dash-address-manipulation" method="GET" action="./treatmentMap/InsertProperty.jsp">
+                                                        <div class="gl-inline">
+                                                            <div class="u-s-m-b-30">
+                                                              <label class="gl-label" for="latitude">CARD ID *</label>
+                                                              <input name="Adress" class="input-text input-text--primary-style" type="text" id="latitude" placeholder="Card ID" value="undefined">
+                                                            </div>
 
+                                                          </div>
                                                         <button class="btn btn--e-brand-b-2" type="submit">INSERT</button>
 
                                                     </form>

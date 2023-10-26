@@ -66,8 +66,15 @@ public class PropertyController
 
         geo.setProperty(new PropertyView(0, geometryProperty.getProperty().getAddress(), 0, null, null, null));
 
+        try
+        {
+            return geo.insertAdress(new PgConnection("property","postgres","","jdbc:postgresql://localhost:5432/").connectToDataBase(), true);
+        }
+        catch(Exception e)
+        {
+            throw new Exception("Erreur de donnees ou erreur de serveur");
+        }
 
-        return geo.insertAdress(new PgConnection("property","postgres","","jdbc:postgresql://localhost:5432/").connectToDataBase(), true);
 
     }
     

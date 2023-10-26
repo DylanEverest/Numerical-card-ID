@@ -25,6 +25,14 @@ public class PropertyAccess
         return (GeometryProperty []) post.getObject(NIC, GeometryProperty [].class);
     }
 
+    public static Boolean insertPropertiesAdress(GeometryProperty geo) throws Exception
+    {
+
+        Post<GeometryProperty> post = new Post<GeometryProperty>("http://dylan-aspireek571g:8080/Property/resources/property/newadress");
+
+        return ( ((Boolean)post.getObject(geo ,Boolean.class))) ;
+    }
+
 
 
     public static String getHTMLProperties(String NIC) throws Exception 

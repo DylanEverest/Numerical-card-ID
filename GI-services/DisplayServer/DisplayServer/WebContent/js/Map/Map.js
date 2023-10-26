@@ -68,7 +68,7 @@ refreshButton.addEventListener("click", function (event)
 
     event.preventDefault();
     const fieldsets = container.querySelectorAll(".gl-inline");
-    while (fieldsets.length >= 1) 
+    while (fieldsets.length > 1) 
     {
       container.removeChild(fieldsets[fieldsets.length - 1]);
     }    
