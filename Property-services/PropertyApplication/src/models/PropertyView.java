@@ -9,13 +9,16 @@ import java.util.List;
 
 import java.sql.Date; // Importez la classe Date pour utiliser les types DATE.
 
-public class PropertyView {
+public class PropertyView 
+{
     private int propertyId;
     private String address;
     private int propertyPersonId;
     private String cardId;
     private Date purchaseDate; // Utilisation du type Date pour purchaseDate.
     private Date sold; // Utilisation du type Date pour sold.
+
+    public PropertyView() {}
 
     public PropertyView(int propertyId, String address, int propertyPersonId, String cardId, Date purchaseDate, Date sold) {
         this.propertyId = propertyId;

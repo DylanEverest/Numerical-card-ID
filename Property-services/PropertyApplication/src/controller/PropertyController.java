@@ -120,4 +120,28 @@ public class PropertyController
 
     }
 
+    @POST
+    @Path("/getGeom")
+    @Produces(MediaType.APPLICATION_JSON)
+    
+    public GeometryProperty getGeometryProperty(String propertyID) throws Exception 
+    {
+        PropertyView p = new PropertyView();
+        p.setPropertyId(Integer.parseInt(propertyID));
+
+        GeometryModels geom = GeometryModels.selectGeomByProperty(new PgConnection("property","postgres","","jdbc:postgresql://localhost:5432/").connectToDataBase(), p, true) ;
+
+        if(geom==null){
+            throw new Exception("Property does not exist") ;
+        }
+
+        PropertyResponse pr = new PropertyResponse(geom.getProperty().getPropertyId(), geom.getProperty().getAddress(), geom.getProperty().getPropertyPersonId(), geom.getProperty().getCardId(),geom.getProperty().getPurchaseDate(), null);
+
+        GeometryProperty response = new GeometryProperty(geom.getLatitude() ,geom.getLongitude() , pr);
+
+        return response ;
+
+
+    }
+
 }
