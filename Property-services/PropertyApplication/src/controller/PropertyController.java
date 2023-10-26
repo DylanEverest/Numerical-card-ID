@@ -9,10 +9,12 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import models.CurrencyReal;
 import models.CurrencyTable;
 import models.GeometryModels;
 import models.PropertyPerson;
 import models.PropertyView;
+import response.CurrencyRealResponse;
 import response.CurrencyResponse;
 import response.GeometryProperty;
 import response.PropertyResponse;
@@ -56,6 +58,17 @@ public class PropertyController
 
         return response;
     }
+
+    @POST
+    @Path("/getRealCurrency")
+    @Produces(MediaType.APPLICATION_JSON)
+    public CurrencyRealResponse getRealCurrency() throws Exception
+    {
+        CurrencyReal cr = CurrencyReal.getCurrencyNow(new PgConnection("property","postgres","","jdbc:postgresql://localhost:5432/").connectToDataBase(), false, "");
+        return new CurrencyRealResponse(cr.getPrice(), cr.getCurrencyName());
+    }
+
+    
 
     @POST
     @Path("/newadress")
