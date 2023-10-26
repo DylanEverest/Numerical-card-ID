@@ -36,6 +36,8 @@ public class PropertyController
         return babas ;
     }
 
+    
+
     @GET
     @Path("/getCurrency")
     @Produces(MediaType.APPLICATION_JSON)
