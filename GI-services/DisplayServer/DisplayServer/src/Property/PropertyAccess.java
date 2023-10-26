@@ -74,9 +74,11 @@ public class PropertyAccess
     }
 
 
-    public static String getScriptMap(String adressID)
+    public static String getScriptMap(String adressID) throws Exception
     {
-        String map = "" ;
+        GeometryProperty geos= PropertyAccess.getGeometryProperty(adressID);
+
+        String map = ""+geos ;
 
         
 
@@ -101,6 +103,14 @@ public class PropertyAccess
         p.getObject(person, Boolean.class) ;
         
 
+    }
+
+
+    public static GeometryProperty getGeometryProperty(String adressID) throws Exception
+    {
+        Post <String> p = new Post<String>("http://dylan-aspireek571g:8080/Property/resources/property/associatePersonProperty/getGeom");         
+
+        return ((GeometryProperty)p.getObject(adressID, GeometryProperty.class)) ;
     }
 
 
