@@ -13,9 +13,7 @@ public class CurrencyAccess
 
         CurrencyResponse response = ((CurrencyResponse)get.getObject(CurrencyResponse.class));
 
-        System.out.println(response.getPrecisionAriary());
-        System.out.println(response.getPrecisionDollar());
-        System.out.println(response.getPrecisionEuro());
+
 
         if(convertor.equalsIgnoreCase("ariary"))
         {
