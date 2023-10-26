@@ -20,6 +20,9 @@ public class PropertyPerson
 
     Date sold ;
 
+    public PropertyPerson() {
+    }
+
     public PropertyPerson(int property_id, String card_id) 
     {
      

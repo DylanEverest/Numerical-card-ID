@@ -11,6 +11,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import models.CurrencyTable;
 import models.GeometryModels;
+import models.PropertyPerson;
 import models.PropertyView;
 import response.CurrencyResponse;
 import response.GeometryProperty;
@@ -36,7 +37,7 @@ public class PropertyController
         return babas ;
     }
 
-    
+
 
     @GET
     @Path("/getCurrency")
@@ -106,5 +107,15 @@ public class PropertyController
         
     }
 
+    @POST
+    @Path("/associatePersonProperty")
+    public boolean insertPropertyPerson(String cardID ,int propertyID) throws Exception
+    {
+        PropertyPerson p = new PropertyPerson();
+        p.setCard_id(cardID);
+        p.setProperty_id(propertyID);
+        return p.insertPropertyAndPerson(new PgConnection("property","postgres","","jdbc:postgresql://localhost:5432/").connectToDataBase(), true);
+
+    }
 
 }
