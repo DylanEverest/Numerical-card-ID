@@ -3,7 +3,6 @@
 <%
 
         WebserviceModule.response.GeometryProperty geometryProperty =PropertyAccess.getGeometryProperty(request.getParameterValues("latitude[]"),request.getParameterValues("longitude[]")) ;
-        out.println(geometryProperty);
         WebserviceModule.response.PropertyResponse rp = new WebserviceModule.response.PropertyResponse();
         rp.setAddress(request.getParameter("Adress"));
         geometryProperty.setProperty(rp);
