@@ -109,11 +109,13 @@ public class PropertyController
 
     @POST
     @Path("/associatePersonProperty")
-    public boolean insertPropertyPerson(String cardID ,int propertyID) throws Exception
+    public Boolean insertPropertyPerson(response.PropertyPerson input) throws Exception
     {
         PropertyPerson p = new PropertyPerson();
-        p.setCard_id(cardID);
-        p.setProperty_id(propertyID);
+        
+        p.setCard_id(input.getCardID());
+        p.setProperty_id(input.getPropertyID());
+
         return p.insertPropertyAndPerson(new PgConnection("property","postgres","","jdbc:postgresql://localhost:5432/").connectToDataBase(), true);
 
     }

@@ -56,6 +56,17 @@ public class HealthAccess
 
 
     }
+    public static void doesExist(String senderNIC) throws Exception
+    {
+        try 
+        {
+            HealthAccess.getGeneralINFO(senderNIC);
+        } 
+        catch (Exception e) 
+        {
+            throw new Exception("Unfound NIC"+senderNIC);
+        }
+    }
 
     public static String getHTMLGeneralInfo(String NIC) throws Exception {
         Info inf = HealthAccess.getGeneralINFO(NIC);

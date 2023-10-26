@@ -1,7 +1,9 @@
 package Property;
 
+import Health.HealthAccess;
 import WebserviceModule.Jersey.Post;
 import WebserviceModule.response.GeometryProperty;
+import WebserviceModule.response.PropertyPerson;
 import WebserviceModule.response.PropertyResponse;
 
 public class PropertyAccess
@@ -75,6 +77,20 @@ public class PropertyAccess
     public static GeometryProperty getGeometryProperty(String [] inputsLatitudes ,String [] inputsLongitudes)
     {
         return new GeometryProperty(inputsLatitudes, inputsLongitudes) ;
+    }
+
+
+    public static void insertPropertyPerson(String  NIC , String adressID) throws Exception
+    {
+        PropertyPerson person = new PropertyPerson(NIC, Integer.parseInt(adressID)) ;
+        
+        Post <PropertyPerson> p = new Post<PropertyPerson>("http://dylan-aspireek571g:8080/Property/resources/property/associatePersonProperty");        
+        
+        HealthAccess.doesExist(NIC);
+
+        p.getObject(person, Boolean.class) ;
+        
+
     }
 
 
