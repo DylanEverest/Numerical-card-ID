@@ -72,6 +72,16 @@ public class PropertyAccess
         }
         return html;
     }
+
+
+    public static String getScriptMap(String adressID)
+    {
+        String map = "" ;
+
+        
+
+        return map;
+    }
     
 
     public static GeometryProperty getGeometryProperty(String [] inputsLatitudes ,String [] inputsLongitudes)

@@ -95,5 +95,5 @@
 
     <script  src="js/Map/Map.js"></script>
 
-    <%=  %>
+    <%= %>
 </html>
