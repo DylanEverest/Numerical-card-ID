@@ -65,7 +65,7 @@
                                                     <form class="dash-address-manipulation" method="GET" action="./treatmentMap/InsertProperty.jsp">
                                                         <div class="gl-inline">
                                                             <div class="u-s-m-b-30">
-                                                              <label class="gl-label" for="latitude">CARD ID *</label>
+                                                              <label class="gl-label" for="latitude">Adress *</label>
                                                               <input name="Adress" class="input-text input-text--primary-style" type="text" id="latitude" placeholder="Card ID" value="undefined">
                                                             </div>
 
